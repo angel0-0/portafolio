@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>portafolio angel</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cstyle%3Epath%7Bstroke:%23111%7D@media(prefers-color-scheme:dark)%7Bpath%7Bstroke:%23fff%7D%7D%3C/style%3E%3Cpath d='M16 3l3.6 8L28.5 11.8l-6.5 5.8 1.8 8.9L16 22.4 8.2 26.5l1.8-8.9-6.5-5.8 8.9-0.8z' fill='none' stroke-width='1.7' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="description" content="Landing page de Angel Herrera">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   SISTEMA DE DISEÑO — paleta y tipografías del brief
+   ============================================================ */
+:root{
+  --marfil:#F7F4EF;
+  --tinta:#111111;
+  --oro:#C9A227;
+  --vino:#5E1622;
+  --neon:#FF2D6B;
+  --negro:#0B0A0B;
+  --serif:'Fraunces',Georgia,serif;
+  --body:'Chakra Petch',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --header-h:64px;
+  --max-w:1100px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 8px);overflow-anchor:none}
+body{
+  font-family:var(--body);
+  font-weight:400;
+  line-height:1.6;
+  background:var(--tinta);
+  color:var(--marfil);
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font-family:inherit;cursor:pointer}
+::selection{background:var(--neon);color:var(--tinta)}
+
+/* ---------- utilidades ---------- */
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 22px;position:relative;z-index:2}
+.kicker{
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--oro);
+}
+.section{position:relative;padding:96px 0;overflow:hidden}
+
+/* transición difuminada entre secciones: cada sección funde
+   desde el color de la anterior con --fade-from */
+.fade-top::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:190px;
+  background:linear-gradient(180deg,var(--fade-from) 0%,transparent 100%);
+  pointer-events:none;z-index:0;
+}
+.fade-bottom::after{
+  content:"";position:absolute;bottom:0;left:0;right:0;height:190px;
+  background:linear-gradient(0deg,var(--fade-to) 0%,transparent 100%);
+  pointer-events:none;z-index:0;
+}
+.s-title{font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;margin:.4em 0 .6em}
+.serif-title{font-family:var(--serif);font-weight:600}
+.tech-title{font-family:var(--body);font-weight:700;letter-spacing:.02em}
+
+/* kanji decorativo vertical al margen */
+.kanji{
+  position:absolute;writing-mode:vertical-rl;
+  font-size:clamp(4rem,9vw,7rem);line-height:1;
+  opacity:.07;user-select:none;pointer-events:none;
+  right:18px;top:90px;font-family:var(--body);font-weight:700;
+}
+
+/* revelado al hacer scroll */
+.rev{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rev.vis{opacity:1;transform:none}
+
+/* tag de placeholder (marcado a propósito — ver brief §8) */
+.ph-tag{
+  display:inline-block;font-family:var(--mono);font-size:.62rem;
+  letter-spacing:.14em;padding:2px 8px;border:1px dashed var(--neon);
+  color:var(--neon);border-radius:4px;vertical-align:middle;
+  text-transform:uppercase;
+}
+
+/* ============================================================
+   BARRA SUPERIOR
+   ============================================================ */
+.topbar{
+  position:fixed;inset:0 0 auto 0;height:var(--header-h);z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 22px;
+  background:rgba(11,10,11,.78);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(201,162,39,.25);
+}
+.brand{
+  font-family:var(--serif);font-weight:600;font-size:1.15rem;
+  text-decoration:none;color:var(--marfil);
+}
+.brand em{font-style:normal;color:#8a2233}
+.topbar-right{display:flex;align-items:center;gap:14px}
+
+/* toggle de idioma */
+.lang-toggle{
+  display:flex;border:1px solid var(--oro);border-radius:6px;overflow:hidden;
+  font-family:var(--mono);font-size:.72rem;
+}
+.lang-toggle button{
+  background:none;border:0;color:var(--marfil);padding:5px 10px;letter-spacing:.1em;
+  transition:background .25s,color .25s;
+}
+.lang-toggle button.active{background:var(--oro);color:var(--tinta);font-weight:600}
+.lang-toggle button:not(.active):hover{color:var(--neon)}
+
+/* hamburguesa */
+.burger{
+  background:none;border:0;width:42px;height:42px;display:grid;place-items:center;
+  border-radius:8px;
+}
+.burger:hover span{background:var(--neon)}
+.burger span,.burger span::before,.burger span::after{
+  content:"";display:block;width:22px;height:2px;background:var(--marfil);
+  transition:transform .3s,opacity .3s,background .3s;position:relative;
+}
+.burger span::before{position:absolute;top:-7px}
+.burger span::after{position:absolute;top:7px}
+body.menu-open .burger span{background:transparent}
+body.menu-open .burger span::before{transform:translateY(7px) rotate(45deg);background:var(--neon)}
+body.menu-open .burger span::after{transform:translateY(-7px) rotate(-45deg);background:var(--neon)}
+
+/* menú overlay */
+.menu{
+  position:fixed;inset:0;z-index:150;background:rgba(11,10,11,.96);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;
+  opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;
+}
+body.menu-open .menu{opacity:1;visibility:visible}
+.menu a{
+  font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.6rem);text-decoration:none;
+  padding:8px 18px;color:var(--marfil);position:relative;transition:color .25s;
+}
+.menu a small{
+  display:block;font-family:var(--mono);font-size:.65rem;letter-spacing:.25em;
+  color:var(--oro);text-align:center;text-transform:uppercase;
+}
+.menu a:hover{color:var(--neon)}
+.menu a:focus-visible{outline:2px solid var(--neon);outline-offset:4px;border-radius:6px}
+
+/* foco visible global */
+a:focus-visible,button:focus-visible,input:focus-visible{
+  outline:2px solid var(--neon);outline-offset:3px;border-radius:4px;
+}
+
+/* ============================================================
+   CAPAS AMBIENTALES: pétalos, estrellas, gatos
+   ============================================================ */
+/* pétalos AL FONDO: encima del fondo de cada sección (z:1),
+   debajo del contenido (.wrap z:2) y de los gatos (z:3) */
+.petals{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.petal{
+  position:absolute;top:-30px;
+  width:14px;height:11px;
+  background:radial-gradient(ellipse at 30% 30%, #a3303f 0%, var(--vino) 70%);
+  border-radius:80% 10% 80% 10%;
+  filter:drop-shadow(0 0 4px rgba(255,45,107,.35));
+  animation:fall linear infinite;
+  opacity:.8;
+}
+@keyframes fall{
+  0%{transform:translateY(-4vh) rotate(0deg) translateX(0)}
+  25%{transform:translateY(26vh) rotate(160deg) translateX(26px)}
+  50%{transform:translateY(52vh) rotate(310deg) translateX(-18px)}
+  75%{transform:translateY(78vh) rotate(460deg) translateX(20px)}
+  100%{transform:translateY(106vh) rotate(620deg) translateX(-8px)}
+}
+
+/* cielo nocturno (solo secciones oscuras) */
+.stars{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.star{
+  position:absolute;width:2px;height:2px;border-radius:50%;
+  background:var(--marfil);opacity:.5;
+  animation:twinkle ease-in-out infinite alternate;
+}
+@keyframes twinkle{from{opacity:.15}to{opacity:.75}}
+.moon{
+  position:absolute;top:56px;right:7%;width:130px;height:130px;border-radius:50%;
+  object-fit:cover;z-index:4;
+  transition:transform .42s ease,opacity .42s ease,filter .42s ease;
+  mix-blend-mode:screen;opacity:.92;
+  -webkit-mask-image:radial-gradient(circle,#000 72%,transparent 97%);
+          mask-image:radial-gradient(circle,#000 72%,transparent 97%);
+  cursor:pointer;
+}
+.moon:hover{transform:scale(1.05);opacity:1}
+.moon.moon-fading{opacity:0;transform:scale(.7);filter:blur(5px)}
+/* easter egg: luna cuadrada de Minecraft */
+.moon.moon-px{
+  border-radius:0;-webkit-mask-image:none;mask-image:none;
+  image-rendering:pixelated;mix-blend-mode:normal;opacity:1;
+  box-shadow:0 0 44px 8px rgba(214,222,240,.28);
+}
+
+/* gatos — Kami y Orión (assets/deco) */
+.cat-float{
+  position:absolute;pointer-events:none;opacity:.85;z-index:3;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.45)) drop-shadow(0 0 18px rgba(255,45,107,.16));
+  will-change:transform;
+}
+.cat-float img{display:block;width:110px;height:auto;pointer-events:auto;cursor:default;transition:transform .3s ease,filter .3s ease}
+.cat-float img.flip{transform:scaleX(-1)}
+.cat-float img:hover{transform:scale(1.1);filter:brightness(1.18) drop-shadow(0 0 14px rgba(255,45,107,.5))}
+.cat-float img.flip:hover{transform:scaleX(-1) scale(1.1)}
+
+/* ============================================================
+   SECCIÓN 1 — SOBRE MÍ (marfil + oro)
+   ============================================================ */
+#sobre-mi{background:linear-gradient(180deg,#170a0e 0%,#130a09 55%,var(--negro) 100%);color:var(--marfil);padding-top:calc(var(--header-h) + 70px)}
+#sobre-mi .kicker{color:var(--oro)}
+#sobre-mi .kanji{color:var(--oro)}
+.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center}
+.hero h1{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(2.6rem,7vw,4.6rem);line-height:1.04;color:var(--marfil);
+}
+.hero h1 .gold{color:transparent;-webkit-text-stroke:1.5px var(--oro)}
+.hero-tagline{
+  font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2.6vw,1.45rem);
+  color:#d98ca0;margin:18px 0 10px;
+}
+.hero-bio{max-width:54ch;color:rgba(247,244,239,.85);margin-top:14px;font-family:var(--serif);font-optical-sizing:auto;font-size:1.05rem;line-height:1.7}
+.hero-photo{
+  width:min(290px,70vw);aspect-ratio:1;border-radius:50%;margin:0 auto;
+  position:relative;overflow:hidden;
+  border:2px solid var(--oro);
+  box-shadow:0 0 38px -8px rgba(201,162,39,.35);
+}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.rose-divider{
+  display:flex;align-items:center;gap:14px;margin:110px 0 34px;color:var(--oro);
+  position:relative;
+}
+.cat-walk{
+  position:absolute;right:9%;bottom:7px;width:112px;cursor:default;
+  filter:drop-shadow(0 6px 10px rgba(94,22,34,.3));
+  transition:transform .3s ease,filter .3s ease;transform-origin:bottom center;
+}
+.cat-walk:hover{
+  transform:scale(1.1);
+  filter:brightness(1.1) drop-shadow(0 0 12px rgba(201,162,39,.55)) drop-shadow(0 6px 10px rgba(94,22,34,.3));
+}
+.rose-divider::before,.rose-divider::after{
+  content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--oro),transparent);
+}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.card{
+  background:rgba(18,11,13,.72);border:1px solid rgba(201,162,39,.35);border-radius:14px;
+  padding:20px 18px;transition:transform .3s,box-shadow .3s,border-color .3s;
+}
+.card:hover{
+  transform:translateY(-5px);border-color:var(--neon);
+  box-shadow:0 12px 28px -14px rgba(255,45,107,.4);
+}
+.card .ico{font-size:1.6rem;display:inline-block;transition:transform .3s}
+.card:hover .ico{transform:scale(1.25) rotate(-8deg)}
+.card h3{font-family:var(--body);font-weight:600;font-size:1rem;margin:8px 0 4px;color:var(--marfil)}
+.card p{font-size:.86rem;color:rgba(247,244,239,.72)}
+
+/* ============================================================
+   SECCIÓN 2 — FOTOGRAFÍA (negro elegante)
+   ============================================================ */
+#fotografia{background:var(--negro)}
+#fotografia .kanji{color:var(--marfil);right:auto;left:14px}
+.foto-head{max-width:640px}
+.foto-head p:not(.kicker){font-family:var(--serif);font-optical-sizing:auto;font-size:1.05rem}
+.filtros{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 30px}
+.filtros button{
+  background:none;border:1px solid rgba(247,244,239,.3);color:var(--marfil);
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 16px;border-radius:999px;transition:all .25s;
+}
+.filtros button:hover{border-color:var(--neon);color:var(--neon)}
+.filtros button.active{background:var(--marfil);color:var(--tinta);border-color:var(--marfil)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));column-gap:14px;grid-auto-rows:2px}
+.g-item{break-inside:avoid;margin-bottom:14px;opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease}
+.g-item.in{opacity:1;transform:none}
+.g-item.hide{display:none}
+.g-btn{
+  display:block;width:100%;padding:0;border:0;background:none;position:relative;
+  border-radius:10px;overflow:hidden;
+}
+.g-btn img{
+  width:100%;height:auto;border-radius:10px;opacity:0;
+  transition:transform .45s ease,filter .45s ease,opacity .8s ease;
+}
+.g-btn img.ok{opacity:1}
+.g-btn::after{
+  content:"";position:absolute;inset:0;border-radius:10px;
+  border:1px solid transparent;transition:border-color .3s,box-shadow .3s;
+}
+.g-btn:hover img{transform:scale(1.04);filter:brightness(1.08)}
+.g-btn:hover::after{border-color:var(--neon);box-shadow:inset 0 0 24px -12px var(--neon)}
+.gal-wrap{position:relative;overflow:hidden;max-height:780px;transition:max-height .8s ease}
+.gal-wrap:not(.open)::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:210px;
+  background:linear-gradient(180deg,transparent,rgba(11,10,11,.6) 55%,var(--negro) 95%);
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 45%);
+          mask-image:linear-gradient(180deg,transparent,#000 45%);
+  pointer-events:none;
+}
+.gal-wrap.no-overflow::after{display:none}
+.gal-more{
+  display:flex;align-items:center;gap:14px;width:100%;margin-top:26px;
+  background:none;border:0;color:var(--marfil);font-family:var(--mono);
+  font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;
+  transition:color .25s;
+}
+.gal-more::before,.gal-more::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--oro),transparent)}
+.gal-more:hover{color:var(--neon)}
+
+/* lightbox */
+.lightbox{
+  position:fixed;inset:0;z-index:300;background:rgba(5,4,5,.93);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;
+  backdrop-filter:blur(6px);
+}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:92vw;max-height:82vh;border-radius:8px;box-shadow:0 0 60px -10px rgba(255,45,107,.25)}
+.lb-btn{
+  position:absolute;background:rgba(17,17,17,.7);border:1px solid rgba(247,244,239,.3);
+  color:var(--marfil);width:46px;height:46px;border-radius:50%;font-size:1.2rem;
+  display:grid;place-items:center;transition:all .25s;
+}
+.lb-btn:hover{border-color:var(--neon);color:var(--neon)}
+.lb-close{top:18px;right:18px}
+.lb-prev{left:14px;top:50%;transform:translateY(-50%)}
+.lb-next{right:14px;top:50%;transform:translateY(-50%)}
+.lb-count{font-family:var(--mono);font-size:.72rem;color:var(--oro);letter-spacing:.2em}
+
+/* ============================================================
+   SECCIÓN 3 — SISTEMAS (oscuro + oro, data)
+   ============================================================ */
+#sistemas{
+  background:
+    linear-gradient(rgba(17,15,18,.97),rgba(17,15,18,.97)),
+    repeating-linear-gradient(0deg,transparent 0 39px,rgba(201,162,39,.5) 39px 40px),
+    repeating-linear-gradient(90deg,transparent 0 39px,rgba(201,162,39,.5) 39px 40px);
+}
+#sistemas .kanji{color:var(--oro)}
+.case-nav{display:flex;justify-content:flex-end;gap:10px;margin:16px 0 10px}
+.case-btn{width:40px;height:40px;border-radius:50%;background:none;border:1px solid rgba(201,162,39,.5);color:var(--oro);font-size:1.3rem;line-height:1;transition:all .25s}
+.case-btn:hover{border-color:var(--neon);color:var(--neon)}
+.case-grid{
+  display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,310px);gap:18px;
+  overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;padding:4px 4px 10px;
+  scrollbar-width:none;
+}
+.case-grid::-webkit-scrollbar{display:none}
+.case-link{
+  position:absolute;right:14px;bottom:10px;font-family:var(--mono);font-size:1.3rem;
+  color:var(--oro);text-decoration:none;transition:color .25s,transform .25s;
+}
+.case-link:hover{color:var(--neon);transform:translate(-3px,-3px)}
+.case-link svg{display:block}
+.case{
+  background:rgba(11,10,11,.75);border:1px solid rgba(201,162,39,.35);
+  border-radius:14px;padding:24px 22px 38px;position:relative;scroll-snap-align:start;
+  transition:transform .3s,border-color .3s;
+}
+.case:hover{transform:translateY(-4px);border-color:var(--oro)}
+.case .num{
+  font-family:var(--mono);font-size:.66rem;color:var(--oro);letter-spacing:.2em;
+}
+.case h3{font-family:var(--body);font-weight:600;font-size:1.05rem;margin:10px 0 14px;line-height:1.3}
+.case dl{font-size:.85rem}
+.case dt{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(247,244,239,.45);margin-top:12px;
+}
+.case dd{color:rgba(247,244,239,.85);margin-top:3px}
+.case .metric{
+  font-family:var(--mono);font-weight:600;font-size:1.5rem;color:var(--oro);
+  display:block;margin-top:4px;
+}
+.case .metric small{font-size:.72rem;font-weight:400;color:rgba(247,244,239,.6)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.tools span{
+  font-family:var(--mono);font-size:.74rem;padding:7px 14px;border-radius:6px;
+  border:1px solid rgba(201,162,39,.4);color:var(--oro);
+  transition:all .25s;
+}
+.tools span:hover{border-color:var(--neon);color:var(--neon);transform:translateY(-2px)}
+.servicios{margin-top:34px}
+.serv-title{font-family:var(--body);font-weight:700;font-size:clamp(1.3rem,3vw,1.8rem);margin:6px 0 16px}
+.serv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px}
+.serv{
+  background:rgba(11,10,11,.6);border:1px solid rgba(201,162,39,.28);border-radius:12px;
+  padding:18px 16px;transition:border-color .3s,transform .3s;
+}
+.serv:hover{border-color:var(--neon);transform:translateY(-3px)}
+.serv .n{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:rgba(247,244,239,.4)}
+.serv h4{font-family:var(--body);font-weight:600;font-size:.95rem;margin:6px 0;color:var(--oro)}
+.serv p{font-size:.85rem;color:rgba(247,244,239,.8)}
+.serv-cta{margin-top:22px;display:inline-block}
+
+/* ============================================================
+   SECCIÓN 4 — HACIA DÓNDE VOY (terminal)
+   ============================================================ */
+#rumbo{background:#050705}
+#rumbo .kanji{color:#28e98c}
+.term{
+  max-width:760px;margin:0 auto;background:#0a0d0a;
+  border:1px solid rgba(40,233,140,.35);border-radius:12px;overflow:hidden;
+  box-shadow:0 0 50px -18px rgba(40,233,140,.3);
+  font-family:var(--mono);font-size:.92rem;
+}
+.term-bar{
+  display:flex;align-items:center;gap:7px;padding:11px 16px;
+  background:rgba(40,233,140,.07);border-bottom:1px solid rgba(40,233,140,.25);
+}
+.term-bar i{width:11px;height:11px;border-radius:50%;display:block}
+.term-bar i:nth-child(1){background:#ff5f56}.term-bar i:nth-child(2){background:#ffbd2e}.term-bar i:nth-child(3){background:#27c93f}
+.term-bar span{margin-left:auto;font-size:.66rem;color:rgba(40,233,140,.6);letter-spacing:.15em}
+.term-body{padding:22px 22px 28px;color:#28e98c;line-height:1.8;min-height:200px}
+.term-body .cmd-line{color:#ffb000}
+.term-body .caret{
+  display:inline-block;width:9px;height:1.1em;background:var(--neon);
+  vertical-align:text-bottom;animation:blink 1s steps(1) infinite;
+}
+@keyframes blink{50%{opacity:0}}
+/* barra de XP estilo HUD de Minecraft */
+.xp{max-width:760px;margin:22px auto 0;font-family:var(--mono)}
+.xp-lvl{
+  display:block;text-align:center;margin-bottom:3px;
+  color:#7efc20;font-weight:600;font-size:1.1rem;line-height:1;
+  text-shadow:2px 0 0 #143b00,-2px 0 0 #143b00,0 2px 0 #143b00,0 -2px 0 #143b00;
+}
+.xp-bar{
+  height:10px;border:2px solid #0d0d0d;position:relative;
+  background:linear-gradient(#414f3c 0 30%,#2e3b2a 30% 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+.xp-fill{
+  height:100%;width:0;
+  background:linear-gradient(#b4f43c 0 30%,#7ac70c 30% 85%,#5e9c08 85% 100%);
+  transition:width 1.6s steps(5) .3s;
+}
+.xp-bar::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,transparent 0 calc(100%/18 - 2px),rgba(13,13,13,.55) calc(100%/18 - 2px) calc(100%/18));
+}
+.xp.vis .xp-fill{width:25%}
+
+/* ============================================================
+   SECCIÓN 5 — CONTACTO (vino + oro)
+   ============================================================ */
+#contacto{
+  background:
+    radial-gradient(ellipse at 50% 120%, rgba(255,45,107,.16), transparent 55%),
+    linear-gradient(165deg,#3d0e17 0%,var(--vino) 55%,#2a0a10 100%);
+  text-align:center;
+}
+#contacto .kanji{color:var(--oro)}
+#contacto .s-title{color:var(--marfil)}
+.contact-cta{
+  display:inline-block;margin:26px 0 38px;padding:16px 42px;border-radius:10px;
+  background:var(--oro);color:var(--tinta);text-decoration:none;
+  font-family:var(--body);font-weight:600;font-size:1.05rem;letter-spacing:.04em;
+  transition:transform .3s,box-shadow .3s;
+}
+.contact-cta:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 34px -6px var(--neon);
+}
+.contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:24px;font-family:var(--mono);font-size:.85rem}
+.contact-links a{color:var(--marfil);text-decoration:none;border-bottom:1px solid rgba(201,162,39,.5);padding-bottom:2px;transition:color .25s,border-color .25s}
+.contact-links a:hover{color:var(--neon);border-color:var(--neon)}
+
+/* ============================================================
+   CONSOLA SECRETA + FOOTER
+   ============================================================ */
+#consola{background:var(--negro);padding:70px 0 30px;position:relative;overflow:hidden}
+.console{
+  max-width:720px;margin:0 auto;background:#0c0a0d;
+  border:1px solid rgba(255,45,107,.3);border-radius:12px;overflow:hidden;
+  font-family:var(--mono);font-size:.85rem;
+  box-shadow:0 0 44px -16px rgba(255,45,107,.35);
+}
+.console-bar{
+  display:flex;align-items:center;padding:10px 16px;
+  background:rgba(255,45,107,.06);border-bottom:1px solid rgba(255,45,107,.2);
+  color:rgba(247,244,239,.5);font-size:.66rem;letter-spacing:.18em;
+}
+.console-out{
+  padding:18px 18px 4px;max-height:300px;overflow-y:auto;color:rgba(247,244,239,.88);
+  white-space:pre-wrap;word-break:break-word;line-height:1.7;
+}
+.console-out .c-in{color:var(--neon)}
+.console-out .c-sys{color:var(--oro)}
+.console-form{display:flex;align-items:center;gap:10px;padding:10px 18px 16px}
+.console-form .prompt{color:var(--neon);font-weight:600}
+.console-form input{
+  flex:1;background:none;border:0;outline:none;color:var(--marfil);
+  font-family:var(--mono);font-size:.85rem;caret-color:var(--neon);
+}
+footer{
+  background:var(--negro);
+  text-align:center;padding:34px 18px 26px;font-family:var(--mono);
+  font-size:.68rem;color:rgba(247,244,239,.35);letter-spacing:.12em;
+}
+footer .k{color:rgba(201,162,39,.5)}
+
+/* ============================================================
+   GLITCH SUTIL (solo título hero, al cargar)
+   ============================================================ */
+@keyframes glitch{
+  0%,92%,100%{text-shadow:none;transform:none}
+  93%{text-shadow:-2px 0 var(--neon),2px 0 var(--oro)}
+  95%{text-shadow:2px 0 var(--neon),-2px 0 var(--oro);transform:translateX(1px)}
+  97%{text-shadow:-1px 0 var(--neon);transform:translateX(-1px)}
+}
+.glitch{animation:glitch 7s infinite}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;gap:30px}
+  .hero-photo{order:-1}
+  .section{padding:70px 0}
+  .kanji{font-size:3.4rem;right:6px}
+  .moon{width:80px;height:80px;top:54px}
+  .gallery{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));column-gap:10px}
+  .g-item{margin-bottom:10px}
+  .cat-float img{width:78px}
+  .cat-walk{width:84px;right:4%}
+  .gal-wrap:not(.open){max-height:640px}
+}
+
+/* ============================================================
+   MOVIMIENTO REDUCIDO — versión calmada
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .petal,.cat-float{display:none !important}
+  .rev{opacity:1;transform:none}
+  .g-item{opacity:1;transform:none}
+  .g-btn img{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<!-- capa de pétalos (la llena JS; oculta con prefers-reduced-motion) -->
+<div class="petals" aria-hidden="true" id="petals"></div>
+
+<!-- ===== BARRA SUPERIOR ===== -->
+<header class="topbar">
+  <a class="brand" href="#sobre-mi">Angel <em>Herrera</em></a>
+  <div class="topbar-right">
+    <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+      <button id="btn-es" class="active" aria-pressed="true">ES</button>
+      <button id="btn-en" aria-pressed="false">EN</button>
+    </div>
+    <button class="burger" id="burger" aria-label="Menú" aria-expanded="false" aria-controls="menu"><span></span></button>
+  </div>
+</header>
+
+<nav class="menu" id="menu" aria-label="Navegación principal">
+  <a href="#sobre-mi"><small>01</small><span data-i18n="nav_sobre">Sobre mí</span></a>
+  <a href="#fotografia"><small>02</small><span data-i18n="nav_foto">Fotografía</span></a>
+  <a href="#sistemas"><small>03</small><span data-i18n="nav_sis">Sistemas</span></a>
+  <a href="#rumbo"><small>04</small><span data-i18n="nav_rumbo">Hacia dónde voy</span></a>
+  <a href="#contacto"><small>05</small><span data-i18n="nav_contacto">Contacto</span></a>
+</nav>
+
+<main>
+<!-- ===== 01 · SOBRE MÍ ===== -->
+<section class="section" id="sobre-mi">
+  <div class="stars" aria-hidden="true"></div>
+  <span class="kanji" aria-hidden="true">天使</span>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <p class="kicker" data-i18n="hero_kicker">portafolio</p>
+        <h1 class="glitch">Angel<br><span class="gold">Herrera</span></h1>
+        <p class="hero-tagline"><span data-i18n="hero_tagline">el arte de fallar y no parar</span></p>
+        <p class="hero-bio" data-i18n="hero_bio">Soy Angel. Estudio Ingeniería en Sistemas, hago fotografía y me gusta resolver problemas. Si no estoy trabajando o en algún proyecto estoy durmiendo con mis gatos, entrenando, en algún lugar aleatorio o con mis amigos. Me gusta ver el cielo, la luna y las estrellas.</p>
+      </div>
+      <figure class="hero-photo rev">
+        <img src="assets/deco/perfil.jpg" alt="Angel Herrera" width="720" height="720" loading="lazy" decoding="async">
+      </figure>
+    </div>
+
+    <div class="rose-divider" aria-hidden="true">♠️<img class="cat-walk" src="assets/deco/kami.png" alt=""></div>
+
+    <p class="kicker rev" data-i18n="about_cards_kicker">cuando no estoy con algo tecnológico…</p>
+    <div class="cards" style="margin-top:22px">
+      <div class="card rev"><span class="ico">🐱</span><h3 data-i18n="card_gatos_t">Gatos</h3><p data-i18n="card_gatos_p">Kami y Orión. También andan sueltos por aquí.</p></div>
+      <div class="card rev"><span class="ico">🥊</span><h3 data-i18n="card_dep_t">Deportes</h3><p data-i18n="card_dep_p">Box, gim, basket, fútbol… de todo.</p></div>
+      <div class="card rev"><span class="ico">🎮</span><h3 data-i18n="card_vj_t">Videojuegos</h3><p data-i18n="card_vj_p">Casi siempre en coop: los logros saben mejor compartidos.</p></div>
+      <div class="card rev"><span class="ico">🛠️</span><h3 data-i18n="card_proy_t">Proyectos</h3><p data-i18n="card_proy_p">Siempre buscando algo nuevo que construir o mejorar.</p></div>
+      <div class="card rev"><span class="ico">🌹</span><h3 data-i18n="card_conect_t">Conectando</h3><p data-i18n="card_conect_p">Los que eran mis amigos ahora son mi familia. Me encanta estar con ellos.</p></div>
+      <div class="card rev"><span class="ico">🌙</span><h3 data-i18n="card_cielo_t">Cielo</h3><p data-i18n="card_cielo_p">Viendo el cielo desde algún techo o en el pasto, de noche o de día.</p></div>
+      <div class="card rev"><span class="ico">💤</span><h3 data-i18n="card_desc_t">Descansando</h3><p data-i18n="card_desc_p">Durmiendo o despejándome. Hay que estar bien descansados para darlo todo siempre.</p></div>
+      <div class="card rev"><span class="ico">📍</span><h3 data-i18n="card_perd_t">Perdido</h3><p data-i18n="card_perd_p">No me sé ubicar, pero siempre llego.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 · FOTOGRAFÍA ===== -->
+<section class="section fade-top" id="fotografia" style="--fade-from:var(--negro)">
+  <div class="stars" aria-hidden="true"></div>
+  <img class="moon" src="assets/deco/luna.jpg" alt="" aria-hidden="true" loading="lazy" width="640" height="640">
+  <span class="kanji" aria-hidden="true">月</span>
+  <div class="wrap" style="position:relative">
+    <div class="foto-head">
+      <p class="kicker" data-i18n="foto_kicker">02 · anima</p>
+      <h2 class="s-title serif-title" data-i18n="foto_title">Fotografía</h2>
+      <p data-i18n="foto_copy">Capturo retratos, eventos y productos. Atención independiente, trato directo.</p>
+    </div>
+    <div class="filtros" role="group" aria-label="Filtrar galería">
+      <button class="active" data-cat="todo" data-i18n="f_todo">Todo</button>
+      <button data-cat="retratos" data-i18n="f_retratos">Retratos</button>
+      <button data-cat="urbano" data-i18n="f_urbano">Urbano</button>
+      <button data-cat="ediciones" data-i18n="f_ediciones">Ediciones</button>
+      <button data-cat="gatos" data-i18n="f_gatos">Gatos</button>
+    </div>
+    <div class="gal-wrap" id="gal-wrap">
+    <div class="gallery" id="gallery">
+      <figure class="g-item" data-cat="urbano">
+        <button class="g-btn" data-full="assets/fotos/full/edge.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/edge.jpg" decoding="async" width="613" height="640" alt="Fotografía urbana — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/img_61901.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/img_61901.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="urbano">
+        <button class="g-btn" data-full="assets/fotos/full/pmunal.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pmunal.jpg" decoding="async" width="484" height="640" alt="Fotografía urbana — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="gatos">
+        <button class="g-btn" data-full="assets/fotos/full/pgato6.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pgato6.jpg" decoding="async" width="640" height="484" alt="Fotografía de gato — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pbiblioteca4.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pbiblioteca4.jpg" decoding="async" width="373" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="ediciones">
+        <button class="g-btn" data-full="assets/fotos/full/ptecho.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/ptecho.jpg" decoding="async" width="640" height="488" alt="Edición gráfica — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="gatos">
+        <button class="g-btn" data-full="assets/fotos/full/pgato7.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pgato7.jpg" decoding="async" width="640" height="367" alt="Fotografía de gato — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pbebedero.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pbebedero.jpg" decoding="async" width="480" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="urbano">
+        <button class="g-btn" data-full="assets/fotos/full/pmunal2.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pmunal2.jpg" decoding="async" width="518" height="640" alt="Fotografía urbana — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/img_6179.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/img_6179.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pchapu.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pchapu.jpg" decoding="async" width="488" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="ediciones">
+        <button class="g-btn" data-full="assets/fotos/full/pmuseo.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pmuseo.jpg" decoding="async" width="486" height="640" alt="Edición gráfica — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="gatos">
+        <button class="g-btn" data-full="assets/fotos/full/pgato3.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pgato3.jpg" decoding="async" width="640" height="373" alt="Fotografía de gato — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="urbano">
+        <button class="g-btn" data-full="assets/fotos/full/plago.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/plago.jpg" decoding="async" width="640" height="422" alt="Fotografía urbana — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="urbano">
+        <button class="g-btn" data-full="assets/fotos/full/pbocho.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pbocho.jpg" decoding="async" width="573" height="640" alt="Fotografía urbana — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pcineteca.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pcineteca.jpg" decoding="async" width="437" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/dscf1194.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/dscf1194.jpg" decoding="async" width="373" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="urbano">
+        <button class="g-btn" data-full="assets/fotos/full/pblioteca2.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pblioteca2.jpg" decoding="async" width="374" height="640" alt="Fotografía urbana — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="ediciones">
+        <button class="g-btn" data-full="assets/fotos/full/pgatos.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pgatos.jpg" decoding="async" width="640" height="458" alt="Edición gráfica — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="gatos">
+        <button class="g-btn" data-full="assets/fotos/full/pgato2.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pgato2.jpg" decoding="async" width="640" height="373" alt="Fotografía de gato — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/img_6115.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/img_6115.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/img_6159.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/img_6159.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="urbano">
+        <button class="g-btn" data-full="assets/fotos/full/plago2.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/plago2.jpg" decoding="async" width="480" height="640" alt="Fotografía urbana — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="ediciones">
+        <button class="g-btn" data-full="assets/fotos/full/pmuseo2.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pmuseo2.jpg" decoding="async" width="489" height="640" alt="Edición gráfica — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="ediciones">
+        <button class="g-btn" data-full="assets/fotos/full/pmuseo3.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pmuseo3.jpg" decoding="async" width="486" height="640" alt="Edición gráfica — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="gatos">
+        <button class="g-btn" data-full="assets/fotos/full/pgato4.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pgato4.jpg" decoding="async" width="640" height="484" alt="Fotografía de gato — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="gatos">
+        <button class="g-btn" data-full="assets/fotos/full/pgato5.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pgato5.jpg" decoding="async" width="640" height="484" alt="Fotografía de gato — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/img_6218.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/img_6218.jpg" decoding="async" width="437" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/img_6253.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/img_6253.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="urbano">
+        <button class="g-btn" data-full="assets/fotos/full/ptecho2.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/ptecho2.jpg" decoding="async" width="640" height="367" alt="Fotografía urbana — Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/img_6290.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/img_6290.jpg" decoding="async" width="437" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/img_6343.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/img_6343.jpg" decoding="async" width="437" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/img_6352.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/img_6352.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pbebedero2.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pbebedero2.jpg" decoding="async" width="512" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pbiblioteca.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pbiblioteca.jpg" decoding="async" width="518" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pbiblioteca3.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pbiblioteca3.jpg" decoding="async" width="373" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pchapu2.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pchapu2.jpg" decoding="async" width="488" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pchapu3.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pchapu3.jpg" decoding="async" width="487" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pchapu4.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pchapu4.jpg" decoding="async" width="487" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pchapur.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pchapur.jpg" decoding="async" width="488" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pdinamos.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pdinamos.jpg" decoding="async" width="374" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pfuente.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pfuente.jpg" decoding="async" width="640" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/pfuente1.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/pfuente1.jpg" decoding="async" width="640" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/plifetime.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/plifetime.jpg" decoding="async" width="640" height="432" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/ptecho3.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/ptecho3.jpg" decoding="async" width="488" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/ptecho4.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/ptecho4.jpg" decoding="async" width="640" height="640" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <figure class="g-item" data-cat="retratos">
+        <button class="g-btn" data-full="assets/fotos/full/img_3129.jpg" aria-label="Ampliar foto">
+          <img src="assets/fotos/thumb/img_3129.jpg" decoding="async" width="640" height="411" alt="Retrato — fotografía de Angel Herrera">
+        </button>
+      </figure>
+      <!--NUEVAS_FOTOS_AQUI-->
+    </div>
+    </div>
+    <button class="gal-more" id="gal-more" type="button"><span id="gal-more-label">ver más</span></button>
+  </div>
+</section>
+
+<!-- ===== 03 · SISTEMAS ===== -->
+<section class="section fade-top" id="sistemas" style="--fade-from:var(--negro)">
+  <div class="stars" aria-hidden="true"></div>
+  <span class="kanji" aria-hidden="true">光</span>
+  <div class="wrap" style="position:relative">
+    <p class="kicker" data-i18n="sis_kicker">03 · automatización &amp; datos</p>
+    <h2 class="s-title tech-title" data-i18n="sis_title">Sistemas</h2>
+    <p style="max-width:60ch" data-i18n="sis_copy">Automatizo lo repetitivo y convierto datos en decisiones. Menos trabajo manual, más tiempo para lo que importa.</p>
+
+    <div class="case-nav">
+      <button class="case-btn" id="case-prev" aria-label="Anterior">‹</button>
+      <button class="case-btn" id="case-next" aria-label="Siguiente">›</button>
+    </div>
+    <div class="case-grid" id="case-grid">
+      <article class="case rev">
+        <span class="num">CASO_01</span>
+        <h3 data-i18n="c1_t">Automatización de pruebas de RRHH</h3>
+        <dl>
+          <dt data-i18n="lbl_problema">Problema</dt><dd data-i18n="c1_p">Calificar Terman-Merrill y Cleaver a mano tomaba ~20 min por prueba.</dd>
+          <dt data-i18n="lbl_hice_yo">Qué hice</dt><dd data-i18n="c1_h">Programé en Python la calificación de ambas pruebas: Terman como aplicación de escritorio (.exe) y Cleaver como web-app. Las dos exportan en PDF sus resultados y gráficas, al instante y sin errores de cálculo.</dd>
+          <dt data-i18n="lbl_resultado">Resultado</dt>
+          <dd><span class="metric">20 → 4 min <small data-i18n="c1_m">por prueba (−80%)</small></span></dd>
+        </dl>
+      </article>
+      <article class="case rev">
+        <span class="num">CASO_02</span>
+        <h3 data-i18n="c2_t">Digitalización de documentos</h3>
+        <dl>
+          <dt data-i18n="lbl_problema">Problema</dt><dd data-i18n="c2_p">Procesos en papel, lentos y difíciles de rastrear.</dd>
+          <dt data-i18n="lbl_hice_yo">Qué hice</dt><dd data-i18n="c2_h">Flujos digitales vinculados a Google Workspace.</dd>
+          <dt data-i18n="lbl_resultado">Resultado</dt>
+          <dd><span class="metric">+50% <small data-i18n="c2_m">menos tiempo de proceso</small></span></dd>
+        </dl>
+      </article>
+      <article class="case rev">
+        <span class="num">CASO_03</span>
+        <h3 data-i18n="c3_t">Análisis de ventas y stock</h3>
+        <dl>
+          <dt data-i18n="lbl_problema">Problema</dt><dd data-i18n="c3_p">Inventario sin niveles claros: faltantes y sobrantes.</dd>
+          <dt data-i18n="lbl_hice_yo">Qué hice</dt><dd data-i18n="c3_h">Máximos y mínimos por producto a partir de los datos de venta del año anterior.</dd>
+          <dt data-i18n="lbl_resultado">Resultado</dt>
+          <dd><span class="metric"><span data-i18n="c3_metric">Visión clara</span> <small data-i18n="c3_m">de productos óptimos definidos por datos</small></span></dd>
+        </dl>
+      </article>
+      <article class="case rev">
+        <span class="num">LOGRO_★</span>
+        <h3 data-i18n="c4_t">Innovation Meetup 2025 - Cancún</h3>
+        <dl>
+          <dt data-i18n="lbl_reto">Reto</dt><dd data-i18n="c4_p">Prototipo de web para venta a colaboradores de la empresa, contra equipos de todo el país.</dd>
+          <dt data-i18n="lbl_hice">Qué hicimos</dt><dd data-i18n="c4_h">Prototipo, documentación técnica/BPM y presentación en inglés.</dd>
+          <dt data-i18n="lbl_resultado">Resultado</dt>
+          <dd><span class="metric" data-i18n="c4_m">Finalista <small>nacional</small></span></dd>
+        </dl>
+        <a class="case-link" href="https://drive.google.com/drive/folders/1Sv5PJGqzNkJRxQjqNZtbJatmzR_8EgCA?usp=sharing" target="_blank" rel="noopener" aria-label="Ver documentación del Innovation Meetup 2025"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M4 4h10M4 4v10M4 4l10.5 10.5"/></svg></a>
+      </article>
+      <article class="case rev">
+        <span class="num">LOGRO_★</span>
+        <h3 data-i18n="c5_t">Innovation Meetup 2026 - Cancún</h3>
+        <dl>
+          <dt data-i18n="lbl_reto">Reto</dt><dd data-i18n="c5_p">Para HPE: convertir datos públicos de empresas en oportunidades comerciales priorizadas, sin el costo de un CRM tradicional.</dd>
+          <dt data-i18n="lbl_hice">Qué hicimos</dt><dd data-i18n="c5_h">ALICE (Account-Level Intelligence & Customer Evaluation): plataforma con motor de IA que arma el perfil 360° de cada cuenta, un Strategic Score de propensión de compra, recomienda soluciones HPE y genera el speech comercial. Backend Python/FastAPI + SQLAlchemy, desplegable local o en la nube.</dd>
+          <dt data-i18n="lbl_resultado">Resultado</dt>
+          <dd><span class="metric"><span data-i18n="c5_metric">Finalista</span> <small data-i18n="c5_m">nacional · 2do año consecutivo</small></span></dd>
+        </dl>
+        <a class="case-link" href="https://drive.google.com/drive/folders/1xKZj3upuC2Xn-6wI0CAh6GogbrTbxf9z?usp=sharing" target="_blank" rel="noopener" aria-label="Ver documentación del Innovation Meetup 2026 - Cancún"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M4 4h10M4 4v10M4 4l10.5 10.5"/></svg></a>
+      </article>
+    </div>
+
+    <div class="tools rev" aria-label="Herramientas">
+      <span>Python</span><span>Power BI</span><span>Excel++</span><span>Google Workspace</span><span>GitHub</span><span data-i18n="tool_ia">IA aplicada</span>
+    </div>
+
+    <div class="servicios">
+      <p class="kicker rev" data-i18n="serv_kicker">consultoría TI · para tu negocio</p>
+      <h3 class="serv-title rev" data-i18n="serv_title">¿Tu negocio necesita algo?</h3>
+      <div class="serv-grid">
+        <div class="serv rev"><span class="n">SRV_01</span><h4 data-i18n="s1_t">Diagnóstico con plantillas</h4><p data-i18n="s1_p">Te mando plantillas listas para llenar; con los datos graficamos si estás cumpliendo tus objetivos.</p></div>
+        <div class="serv rev"><span class="n">SRV_02</span><h4 data-i18n="s2_t">Revisión y plan</h4><p data-i18n="s2_p">Revisamos juntos los resultados y definimos qué hacer para mejorar.</p></div>
+        <div class="serv rev"><span class="n">SRV_03</span><h4 data-i18n="s3_t">Capacitaciones</h4><p data-i18n="s3_p">Tecnología y ofimática, a la medida de tu equipo.</p></div>
+        <div class="serv rev"><span class="n">SRV_04</span><h4 data-i18n="s4_t">Soporte y equipos</h4><p data-i18n="s4_p">Revisión de equipos de cómputo, instalaciones y otros servicios extra.</p></div>
+      </div>
+      <a class="contact-cta serv-cta rev" href="#contacto" data-i18n="serv_cta">Contáctame →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04 · HACIA DÓNDE VOY ===== -->
+<section class="section fade-top" id="rumbo" style="--fade-from:#110F12">
+  <div class="stars" aria-hidden="true"></div>
+  <span class="kanji" aria-hidden="true">闇</span>
+  <div class="wrap" style="position:relative">
+    <p class="kicker" style="color:#28e98c" data-i18n="rumbo_kicker">04 · de aquí, ¿a dónde?</p>
+    <h2 class="s-title tech-title" style="color:#28e98c" data-i18n="rumbo_title">Hacia dónde voy</h2>
+    <div class="term rev">
+      <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>angel@futuro:~</span></div>
+      <div class="term-body" id="term-body">
+        <span class="cmd-line">$ cat objetivo.txt</span><br>
+        <span id="term-text" data-i18n="rumbo_copy">Me estoy adentrando en la ciberseguridad, automatización, consultoría y mejora de procesos. Tengo las bases y las estoy llevando más lejos, aprendiendo constantemente y superando desafíos, obstáculos y miedos.</span><span class="caret" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="xp rev">
+      <span class="xp-lvl" aria-hidden="true">21</span>
+      <div class="xp-bar" aria-hidden="true"><div class="xp-fill"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05 · CONTACTO ===== -->
+<section class="section fade-top fade-bottom" id="contacto" style="--fade-from:#050705;--fade-to:var(--negro)">
+  <span class="kanji" aria-hidden="true">星</span>
+  <div class="wrap" style="position:relative">
+    <p class="kicker" data-i18n="contacto_kicker">05 · ¿el fin?</p>
+    <h2 class="s-title serif-title" data-i18n="contacto_title">¿Tienes algo en mente?</h2>
+    <a class="contact-cta" href="mailto:angel.herr.808@gmail.com" data-i18n="contacto_cta">Escríbeme →</a>
+    <div class="contact-links">
+      <a href="https://www.instagram.com/angel.808_" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/angelcattastrophic" target="_blank" rel="noopener" id="linkedin-link">LinkedIn</a>
+      <a href="mailto:angel.herr.808@gmail.com" data-i18n="contacto_mail">Correo</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== CONSOLA SECRETA =====
+     Seguridad: 100% cliente, respuestas hardcodeadas, sin eval(),
+     sin red, input escapado vía textContent. Ver brief §6. -->
+<section id="consola" aria-label="Consola interactiva">
+  <div class="console">
+    <div class="console-bar">angel://consola — λ shell</div>
+    <div class="console-out" id="c-out" aria-live="polite"></div>
+    <form class="console-form" id="c-form">
+      <span class="prompt" aria-hidden="true">λ</span>
+      <input id="c-in" type="text" autocomplete="off" spellcheck="false" maxlength="60" aria-label="Escribe un comando">
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span class="k" aria-hidden="true">月 猫 星 ·</span> © 2026 Angel Herrera
+</footer>
+
+<!-- lightbox de la galería -->
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="lb-btn lb-close" id="lb-close" aria-label="Cerrar">✕</button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Anterior">‹</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-btn lb-next" id="lb-next" aria-label="Siguiente">›</button>
+  <span class="lb-count" id="lb-count"></span>
+</div>
+
+<script>
+/* ============================================================
+   UTILIDADES
+   ============================================================ */
+const $  = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ============================================================
+   I18N — ES / EN (recuerda elección durante la sesión)
+   ============================================================ */
+const HTML_KEYS = new Set(['c4_m','c5_m']);
+const I18N = {
+es:{
+  nav_sobre:'Sobre mí', nav_foto:'Fotografía', nav_sis:'Sistemas', nav_rumbo:'Hacia dónde voy', nav_contacto:'Contacto',
+  hero_kicker:'portafolio',
+  hero_tagline:'el arte de fallar y no parar',
+  hero_bio:'Soy Angel. Estudio Ingeniería en Sistemas, hago fotografía y me gusta resolver problemas. Si no estoy trabajando o en algún proyecto estoy durmiendo con mis gatos, entrenando, en algún lugar aleatorio o con mis amigos. Me gusta ver el cielo, la luna y las estrellas.',
+  hero_photo_ph:'foto de perfil · pendiente',
+  about_cards_kicker:'cuando no estoy con algo tecnológico…',
+  card_gatos_t:'Gatos', card_gatos_p:'Kami y Orión. También andan sueltos por aquí.',
+  card_dep_t:'Deportes', card_dep_p:'Box, gim, basket, fútbol… de todo.',
+  card_vj_t:'Videojuegos', card_vj_p:'Casi siempre en coop: los logros saben mejor compartidos.',
+  card_proy_t:'Proyectos', card_proy_p:'Siempre buscando algo nuevo que construir o mejorar.',
+  card_conect_t:'Conectando', card_conect_p:'Los que eran mis amigos ahora son mi familia. Me encanta estar con ellos.',
+  card_cielo_t:'Cielo', card_cielo_p:'Viendo el cielo desde algún techo o en el pasto, de noche o de día.',
+  card_desc_t:'Descansando', card_desc_p:'Durmiendo o despejándome. Hay que estar bien descansados para darlo todo siempre.',
+  card_perd_t:'Perdido', card_perd_p:'No me sé ubicar, pero siempre llego.',
+  foto_kicker:'02 · anima', foto_title:'Fotografía',
+  foto_copy:'Capturo retratos, eventos y productos. Atención independiente, trato directo.',
+  f_todo:'Todo', f_retratos:'Retratos', f_urbano:'Urbano', f_ediciones:'Ediciones', f_gatos:'Gatos',
+  gal_more:'ver más', gal_less:'ver menos',
+  sis_kicker:'03 · automatización & datos', sis_title:'Sistemas',
+  sis_copy:'Automatizo lo repetitivo y convierto datos en decisiones. Menos trabajo manual, más tiempo para lo que importa.',
+  lbl_problema:'Problema', lbl_hice:'Qué hicimos', lbl_hice_yo:'Qué hice', lbl_resultado:'Resultado', lbl_reto:'Reto',
+  c1_t:'Automatización de pruebas de RRHH',
+  c1_p:'En RRHH calificaban las pruebas psicométricas Terman-Merrill y Cleaver a mano: ~20 min por prueba, con margen de error y horas perdidas en algo repetitivo.',
+  c1_h:'Programé en Python la calificación de ambas pruebas: Terman como aplicación de escritorio (.exe) y Cleaver como web-app. Las dos exportan en PDF sus resultados y gráficas, al instante y sin errores de cálculo.',
+  c1_m:'por prueba · −80% del tiempo',
+  c2_t:'Digitalización de documentos',
+  c2_p:'Trámites en papel: lentos, fáciles de traspapelar y difíciles de rastrear cuando alguien preguntaba en qué iba su proceso.',
+  c2_h:'Digitalicé los documentos y armé flujos vinculados a Google Workspace, con todo centralizado, rastreable y accesible desde cualquier lugar.',
+  c2_m:'menos tiempo de proceso',
+  c3_t:'Análisis de ventas y stock',
+  c3_p:'Inventario sin niveles claros: unos productos se agotaban y otros se quedaban estancados, amarrando dinero en stock que no rotaba.',
+  c3_h:'Analicé los datos de venta del año anterior y definí máximos y mínimos óptimos por producto, para saber cuándo y cuánto reabastecer de cada uno.',
+  c3_metric:'Visión clara',
+  c3_m:'de productos óptimos definidos por datos',
+  c4_t:'Innovation Meetup 2025 - Cancún',
+  c4_p:'Innovation Meetup junta equipos de todo el país a resolver un reto real en pocos días. El nuestro: un prototipo de web para venta a colaboradores de la empresa.',
+  c4_h:'Construimos el prototipo funcional, la documentación técnica y el BPM del proceso, y lo presentamos en inglés ante el jurado.',
+  c4_m:'Finalista <small>nacional</small>',
+  c5_t:'Innovation Meetup 2026 - Cancún',
+  c5_p:'Para HPE: convertir datos públicos de empresas en oportunidades comerciales priorizadas, sin el costo de un CRM tradicional.',
+  c5_h:'ALICE (Account-Level Intelligence & Customer Evaluation): plataforma con motor de IA que arma el perfil 360° de cada cuenta, un Strategic Score de propensión de compra, recomienda soluciones HPE y genera el speech comercial. Backend Python/FastAPI + SQLAlchemy, desplegable local o en la nube.',
+  c5_metric:'Finalista', c5_m:'<small>nacional</small> · 2do año consecutivo',
+  tool_ia:'IA aplicada',
+  serv_kicker:'consultoría TI · para tu negocio', serv_title:'¿Tu negocio necesita algo?',
+  s1_t:'Diagnóstico con plantillas', s1_p:'Te mando plantillas listas para llenar; con los datos graficamos si estás cumpliendo tus objetivos.',
+  s2_t:'Revisión y plan', s2_p:'Revisamos juntos los resultados y definimos qué hacer para mejorar.',
+  s3_t:'Capacitaciones', s3_p:'Tecnología y ofimática, a la medida de tu equipo.',
+  s4_t:'Soporte y equipos', s4_p:'Revisión de equipos de cómputo, instalaciones y otros servicios extra.',
+  serv_cta:'Contáctame →',
+  rumbo_kicker:'04 · de aquí, ¿a dónde?', rumbo_title:'Hacia dónde voy',
+  rumbo_copy:'Me estoy adentrando en la ciberseguridad, automatización, consultoría y mejora de procesos. Tengo las bases y las estoy llevando más lejos, aprendiendo constantemente y superando desafíos, obstáculos y miedos.',
+  contacto_kicker:'05 · ¿el fin?', contacto_title:'¿Tienes algo en mente?',
+  contacto_cta:'Escríbeme →', contacto_mail:'Correo',
+},
+en:{
+  nav_sobre:'About me', nav_foto:'Photography', nav_sis:'Systems', nav_rumbo:'Where I\'m headed', nav_contacto:'Contact',
+  hero_kicker:'portfolio',
+  hero_tagline:'find what you love and let it kill you',
+  hero_bio:'I\'m Angel. I study Systems Engineering, shoot photography and like solving problems. When I\'m not working or deep in a project, I\'m napping with my cats, training, somewhere random, or out with my friends. I like watching the sky, the moon and the stars.',
+  hero_photo_ph:'profile photo · pending',
+  about_cards_kicker:'when I\'m not in tech…',
+  card_gatos_t:'Cats', card_gatos_p:'Kami and Orión. They roam around here, too.',
+  card_dep_t:'Sports', card_dep_p:'Boxing, gym, basketball, soccer… a bit of everything.',
+  card_vj_t:'Video games', card_vj_p:'Mostly co-op: achievements taste better shared.',
+  card_proy_t:'Projects', card_proy_p:'Always looking for something new to build or improve.',
+  card_conect_t:'Connecting', card_conect_p:'Friends who became family. I love being with them.',
+  card_cielo_t:'Sky', card_cielo_p:'Watching the sky from a rooftop or in the grass, day or night.',
+  card_desc_t:'Resting', card_desc_p:'Sleeping or unwinding. Be well rested to take it all on.',
+  card_perd_t:'Lost', card_perd_p:'I have no sense of direction, but I always get there.',
+  foto_kicker:'02 · anima', foto_title:'Photography',
+  foto_copy:'I shoot portraits, events and products. Independent work, direct communication.',
+  f_todo:'All', f_retratos:'Portraits', f_urbano:'Urban', f_ediciones:'Edits', f_gatos:'Cats',
+  gal_more:'see more', gal_less:'see less',
+  sis_kicker:'03 · automation & data', sis_title:'Systems',
+  sis_copy:'I automate the repetitive and turn data into decisions. Less manual work, more time for what matters.',
+  lbl_problema:'Problem', lbl_hice:'What we did', lbl_hice_yo:'What I did', lbl_resultado:'Result', lbl_reto:'Challenge',
+  c1_t:'HR test automation',
+  c1_p:'HR graded the Terman-Merrill and Cleaver psychometric tests by hand: ~20 min each, error-prone and hours lost on something repetitive.',
+  c1_h:'I coded both tests\' grading in Python: Terman as a desktop app (.exe) and Cleaver as a web app. Both export their results and charts to PDF — instantly and with no math errors.',
+  c1_m:'per test · −80% of the time',
+  c2_t:'Document digitization',
+  c2_p:'Paper-based procedures: slow, easy to misplace and hard to track when someone asked where their process stood.',
+  c2_h:'I digitized the documents and built flows linked to Google Workspace — everything centralized, traceable and accessible from anywhere.',
+  c2_m:'less processing time',
+  c3_t:'Sales & stock analysis',
+  c3_p:'Inventory with no clear levels: some products ran out while others piled up, tying money into stock that wasn\'t moving.',
+  c3_h:'I analyzed last year\'s sales data and set optimal max and min levels per product, so we knew when and how much to restock of each one.',
+  c3_metric:'Clear picture',
+  c3_m:'of optimal stock, defined by data',
+  c4_t:'Innovation Meetup 2025 - Cancún',
+  c4_p:'Innovation Meetup brings teams from across the country to solve a real challenge in a few days. Ours: a web prototype for selling to company employees.',
+  c4_h:'We built the working prototype, the technical and BPM documentation, and pitched it in English to the judges.',
+  c4_m:'National finalist',
+  c5_t:'Innovation Meetup 2026 - Cancún',
+  c5_p:'For HPE: turn companies\' public data into prioritized sales opportunities, without the cost of a traditional CRM.',
+  c5_h:'ALICE (Account-Level Intelligence & Customer Evaluation): an AI-powered platform that builds a 360° profile of each account, a Strategic Score for purchase propensity, recommends HPE solutions and generates the sales pitch. Python/FastAPI + SQLAlchemy backend, deployable on-prem or cloud.',
+  c5_metric:'National finalist', c5_m:'<small>2nd year in a row</small>',
+  tool_ia:'Applied AI',
+  serv_kicker:'IT consulting · for your business', serv_title:'Does your business need something?',
+  s1_t:'Template-based diagnosis', s1_p:'I send you ready-to-fill templates; with the data we chart whether you\'re hitting your goals.',
+  s2_t:'Review & plan', s2_p:'We go over the results together and define what to do next.',
+  s3_t:'Training', s3_p:'Tech and office tools, tailored to your team.',
+  s4_t:'Support & hardware', s4_p:'Computer and facility check-ups, plus other extra services.',
+  serv_cta:'Contact me →',
+  rumbo_kicker:'04 · from here, where to?', rumbo_title:'Where I\'m headed',
+  rumbo_copy:'I\'m diving into cybersecurity, automation, consulting and process improvement. I\'ve got the foundations and I\'m taking them further — constantly learning, overcoming challenges, obstacles and fears.',
+  contacto_kicker:'05 · the end?', contacto_title:'Got something in mind?',
+  contacto_cta:'Email me →', contacto_mail:'Email',
+}};
+
+let LANG = sessionStorage.getItem('lang') || 'es';
+
+function setLang(l){
+  LANG = l;
+  sessionStorage.setItem('lang', l);
+  document.documentElement.lang = l;
+  $$('[data-i18n]').forEach(el=>{
+    const k = el.dataset.i18n, v = I18N[l][k];
+    if(v === undefined) return;
+    if(HTML_KEYS.has(k)) el.innerHTML = v; else el.textContent = v;
+  });
+  $('#btn-es').classList.toggle('active', l==='es');
+  $('#btn-en').classList.toggle('active', l==='en');
+  $('#btn-es').setAttribute('aria-pressed', l==='es');
+  $('#btn-en').setAttribute('aria-pressed', l==='en');
+  typeTerminal(true);
+  if(window.updateGalLabel) window.updateGalLabel();
+}
+$('#btn-es').addEventListener('click', ()=>setLang('es'));
+$('#btn-en').addEventListener('click', ()=>setLang('en'));
+
+/* ============================================================
+   MENÚ HAMBURGUESA
+   ============================================================ */
+const burger = $('#burger');
+function toggleMenu(force){
+  const open = force !== undefined ? force : !document.body.classList.contains('menu-open');
+  document.body.classList.toggle('menu-open', open);
+  burger.setAttribute('aria-expanded', open);
+}
+burger.addEventListener('click', ()=>toggleMenu());
+$$('.menu a').forEach(a=>a.addEventListener('click', ()=>toggleMenu(false)));
+addEventListener('keydown', e=>{ if(e.key==='Escape'){ toggleMenu(false); closeLB(); }});
+
+/* ============================================================
+   REVELADOS AL HACER SCROLL
+   ============================================================ */
+const revObs = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ e.target.classList.add('vis'); revObs.unobserve(e.target); }
+}),{threshold:.12});
+$$('.rev').forEach(el=>revObs.observe(el));
+
+/* ============================================================
+   CIELO NOCTURNO — estrellas en secciones oscuras
+   ============================================================ */
+$$('.stars').forEach(c=>{
+  for(let i=0;i<42;i++){
+    const s = document.createElement('span');
+    s.className = 'star';
+    s.style.left = Math.random()*100 + '%';
+    s.style.top  = Math.random()*100 + '%';
+    let sz = 1 + Math.random()*1.6;
+    if(i % 13 === 0){ s.style.borderRadius = '0'; sz = 2.6 + Math.random()*1.6; } // estrellas Minecraft
+    s.style.width = s.style.height = sz + 'px';
+    s.style.animationDuration = (2 + Math.random()*3.5) + 's';
+    s.style.animationDelay = (-Math.random()*4) + 's';
+    c.appendChild(s);
+  }
+});
+
+/* luna: click → luna cuadrada de Minecraft por unos segundos */
+const moonEl = $('img.moon');
+if(moonEl){
+  let mcBusy = false;
+  const moonSwap = toPixel => new Promise(res=>{
+    moonEl.classList.add('moon-fading');
+    setTimeout(()=>{
+      moonEl.classList.toggle('moon-px', toPixel);
+      moonEl.src = toPixel ? 'assets/deco/luna_pixel.png' : 'assets/deco/luna.jpg';
+      moonEl.classList.remove('moon-fading');
+      setTimeout(res, REDUCED ? 0 : 440);
+    }, REDUCED ? 0 : 440);
+  });
+  moonEl.addEventListener('click', async ()=>{
+    if(mcBusy) return;
+    mcBusy = true;
+    await moonSwap(true);
+    setTimeout(async ()=>{ await moonSwap(false); mcBusy = false; }, 3800);
+  });
+}
+
+/* ============================================================
+   PÉTALOS DE ROSA
+   ============================================================ */
+if(!REDUCED){
+  const layer = $('#petals');
+  for(let i=0;i<14;i++){
+    const p = document.createElement('span');
+    p.className = 'petal';
+    p.style.left = Math.random()*100 + 'vw';
+    const sc = .6 + Math.random()*.9;
+    p.style.transform = `scale(${sc})`;
+    p.style.animationDuration = (9 + Math.random()*10) + 's';
+    p.style.animationDelay = (-Math.random()*18) + 's';
+    p.style.opacity = .35 + Math.random()*.45;
+    layer.appendChild(p);
+  }
+}
+
+/* ============================================================
+   GATOS — PLACEHOLDER (SVG). Cambiar por PNG de Kami y Orión.
+   ============================================================ */
+const CAT_IMG = (name, flip)=>`<img src="assets/deco/${name}.png" width="110" alt="" ${flip?'class="flip"':''}>`;
+const catSpots = [
+  {sec:'#sistemas', name:'orion', x:'87%', y:'4%', flip:true } // Orión vigilando
+];
+const cats = [];
+if(!REDUCED){
+  catSpots.forEach(c=>{
+    const sec = $(c.sec); if(!sec) return;
+    const el = document.createElement('div');
+    el.className = 'cat-float';
+    el.style.left = c.x; el.style.top = c.y;
+    el.innerHTML = CAT_IMG(c.name, c.flip);
+    sec.appendChild(el);
+    cats.push({el, sec});
+  });
+  let ticking = false;
+  addEventListener('scroll', ()=>{
+    if(ticking) return; ticking = true;
+    requestAnimationFrame(()=>{
+      const vh = innerHeight;
+      cats.forEach(({el,sec})=>{
+        const r = sec.getBoundingClientRect();
+        const prog = Math.min(1, Math.max(0,(vh - r.top)/(vh + r.height)));
+        el.style.transform = `translateY(${(prog-.5)*46}px) rotate(${(prog-.5)*8}deg)`;
+      });
+      ticking = false;
+    });
+  },{passive:true});
+}
+
+/* ============================================================
+   GALERÍA — filtros + lightbox + lazy
+   ============================================================ */
+$$('.filtros button').forEach(b=>b.addEventListener('click', ()=>{
+  $$('.filtros button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  const cat = b.dataset.cat;
+  $$('.g-item').forEach(it=>it.classList.toggle('hide', cat!=='todo' && it.dataset.cat!==cat));
+  masonry();
+  updateGal();
+}));
+
+/* masonry por filas: cada item calcula su alto con width/height del img */
+function masonry(){
+  $$('.g-item').forEach(it=>{
+    if(it.classList.contains('hide')){ it.style.gridRowEnd = ''; return; }
+    const im = it.querySelector('img');
+    const w = it.getBoundingClientRect().width;
+    if(!w) return;
+    const mb = parseFloat(getComputedStyle(it).marginBottom) || 14;
+    const h = w * im.getAttribute('height') / im.getAttribute('width');
+    it.style.gridRowEnd = 'span ' + Math.max(1, Math.ceil((h + mb) / 2));
+  });
+}
+masonry();
+let mzT = null;
+addEventListener('resize', ()=>{ clearTimeout(mzT); mzT = setTimeout(()=>{ masonry(); updateGal(); }, 150); });
+
+/* revelación suave de la galería */
+const gObs = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ e.target.classList.add('in'); gObs.unobserve(e.target); }
+}),{threshold:.05});
+$$('.g-item').forEach(it=>{
+  gObs.observe(it);
+  const im = it.querySelector('img');
+  const ok = ()=>im.classList.add('ok');
+  if(im.complete && im.naturalWidth) ok();
+  else { im.addEventListener('load', ok); im.addEventListener('error', ok); }
+});
+
+/* ver más / ver menos de la galería */
+const gw = $('#gal-wrap'), gmBtn = $('#gal-more'), gmLabel = $('#gal-more-label'), gal = $('#gallery');
+const baseH = ()=> innerWidth <= 760 ? 640 : 780;
+window.updateGalLabel = ()=>{ if(gmLabel && gw) gmLabel.textContent = I18N[LANG][gw.classList.contains('open') ? 'gal_less' : 'gal_more']; };
+function updateGal(){
+  if(!gw) return;
+  const open = gw.classList.contains('open');
+  const overflowing = gal.scrollHeight > baseH() + 2;
+  gmBtn.hidden = !open && !overflowing;
+  gw.classList.toggle('no-overflow', !open && !overflowing);
+  window.updateGalLabel();
+}
+gmBtn.addEventListener('click', ()=>{
+  const opening = !gw.classList.contains('open');
+  gw.classList.toggle('open', opening);
+  if(opening){
+    gw.style.maxHeight = gw.scrollHeight + 'px';
+    const end = e=>{
+      if(e.propertyName !== 'max-height') return;
+      if(gw.classList.contains('open')) gw.style.maxHeight = 'none';
+      gw.removeEventListener('transitionend', end);
+    };
+    gw.addEventListener('transitionend', end);
+  } else {
+    gw.style.maxHeight = gw.scrollHeight + 'px';
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ gw.style.maxHeight = baseH() + 'px'; }));
+    gw.scrollIntoView({behavior: REDUCED ? 'auto' : 'smooth', block: 'start'});
+  }
+  updateGal();
+});
+updateGal();
+
+const lb = $('#lightbox'), lbImg = $('#lb-img'), lbCount = $('#lb-count');
+let lbList = [], lbIdx = 0, lbReturnFocus = null;
+function visibleItems(){ return $$('.g-item:not(.hide) .g-btn'); }
+function openLB(btn){
+  lbList = visibleItems();
+  lbIdx = lbList.indexOf(btn);
+  lbReturnFocus = btn;
+  showLB();
+  lb.hidden = false;
+  document.body.style.overflow = 'hidden';
+  $('#lb-close').focus();
+}
+function showLB(){
+  const b = lbList[lbIdx];
+  lbImg.src = b.dataset.full;
+  lbImg.alt = b.querySelector('img').alt;
+  lbCount.textContent = (lbIdx+1) + ' / ' + lbList.length;
+}
+function closeLB(){
+  if(lb.hidden) return;
+  lb.hidden = true;
+  document.body.style.overflow = '';
+  if(lbReturnFocus) lbReturnFocus.focus();
+}
+function stepLB(d){ lbIdx = (lbIdx + d + lbList.length) % lbList.length; showLB(); }
+document.addEventListener('click', e=>{
+  const btn = e.target.closest('.g-btn');
+  if(btn) openLB(btn);
+});
+$('#lb-close').addEventListener('click', closeLB);
+$('#lb-prev').addEventListener('click', ()=>stepLB(-1));
+$('#lb-next').addEventListener('click', ()=>stepLB(1));
+lb.addEventListener('click', e=>{ if(e.target===lb) closeLB(); });
+addEventListener('keydown', e=>{
+  if(lb.hidden) return;
+  if(e.key==='ArrowLeft') stepLB(-1);
+  if(e.key==='ArrowRight') stepLB(1);
+});
+
+/* carrusel de casos — infinito (clones a ambos lados + salto invisible) */
+const cg = $('#case-grid');
+if(cg){
+  const GAP = 18;
+  const originals = [...cg.children];
+  const N = originals.length;
+  const clones = ()=>originals.map(c=>{
+    const k = c.cloneNode(true);
+    k.classList.remove('rev','vis');
+    k.setAttribute('aria-hidden','true');
+    k.querySelectorAll('a,button').forEach(el=>el.tabIndex=-1);
+    return k;
+  });
+  clones().reverse().forEach(k=>cg.prepend(k));
+  clones().forEach(k=>cg.append(k));
+  const step  = ()=>((cg.children[0].getBoundingClientRect().width || 300) + GAP);
+  const block = ()=>step()*N;
+  requestAnimationFrame(()=>{ cg.scrollLeft = block(); });
+  let idleT = null, dragging = false;
+  const normalize = ()=>{
+    if(dragging) return;
+    const b = block(), sl = cg.scrollLeft;
+    if(sl < b)            cg.scrollLeft = sl + b;
+    else if(sl >= 2 * b)  cg.scrollLeft = sl - b;
+  };
+  const queueNorm = ()=>{ clearTimeout(idleT); idleT = setTimeout(normalize, 90); };
+  cg.addEventListener('scroll', queueNorm, {passive:true});
+  cg.addEventListener('pointerdown', ()=>{ dragging = true; }, {passive:true});
+  addEventListener('pointerup', ()=>{ dragging = false; queueNorm(); }, {passive:true});
+  $('#case-prev').addEventListener('click', ()=>cg.scrollBy({left:-step(), behavior:REDUCED?'auto':'smooth'}));
+  $('#case-next').addEventListener('click', ()=>cg.scrollBy({left: step(), behavior:REDUCED?'auto':'smooth'}));
+}
+
+/* ============================================================
+   TERMINAL "HACIA DÓNDE VOY" — tipeo al entrar en vista
+   ============================================================ */
+let termTyped = false, termTimer = null;
+function typeTerminal(instant){
+  const el = $('#term-text'); if(!el) return;
+  const full = I18N[LANG].rumbo_copy;
+  clearInterval(termTimer);
+  if(REDUCED || instant && !termTyped){ el.textContent = full; return; }
+  if(!termTyped) return;            // aún no entra en vista
+  el.textContent = '';
+  let i = 0;
+  termTimer = setInterval(()=>{
+    el.textContent = full.slice(0, ++i);
+    if(i >= full.length) clearInterval(termTimer);
+  }, 18);
+}
+const termObs = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting && !termTyped){
+    termTyped = true; typeTerminal(); termObs.disconnect();
+  }
+}),{threshold:.35});
+if($('#rumbo')) termObs.observe($('#rumbo'));
+
+/* ============================================================
+   CONSOLA SECRETA — 100% cliente, sin eval, input escapado
+   ============================================================ */
+const cOut = $('#c-out'), cIn = $('#c-in');
+function cPrint(txt, cls){
+  const d = document.createElement('div');
+  if(cls) d.className = cls;
+  d.textContent = txt;                 // ← escapado: nunca innerHTML con input
+  cOut.appendChild(d);
+  cOut.scrollTop = cOut.scrollHeight;
+}
+const CATS_ART = String.raw`  /\_/\     /\_/\
+ ( o.o )   ( -.- )
+  > ^ <     > ^ <
+  KAMI      ORION`;
+const CMD = {
+  es:{
+    help:'comandos: whoami · skills · cat gatos · sudo contratar · gg · lang en · clear\n(¿y más?)',
+    whoami:'angel ..¿?',
+    skills:'python · power bi · excel avanzado · google workspace · github · ia aplicada\nfotografía: retratos · eventos · productos · urbano',
+    'cat gatos': CATS_ART + '\nkami: supervisa todo desde el punto más alto.\norión: atención al cliente (te ve y corre).',
+    'sudo contratar':'[sudo] contraseña: ********\npermiso concedido ✔ redirigiendo a contacto…',
+    gg:'gg wp',
+    luna:'el ojo en el cielo. nos mira.',
+    neko:'にゃー。curios@. kami aprueba (orión sigue dormido).',
+    miau:'miau',
+    lambda:'la función identidad.',
+    hack:'iniciando hackeo… error 403: mejor velo aprendiendo en «hacia dónde voy» ↑',
+    angel:'天使 — mensajero del cielo.',
+    notfound:c=>`comando no encontrado: «${c}». escribe help.`
+  },
+  en:{
+    help:'commands: whoami · skills · cat cats · sudo hire · gg · lang es · clear\n(and more?)',
+    whoami:'angel ..¿?',
+    skills:'python · power bi · advanced excel · google workspace · github · applied ai\nphotography: portraits · events · products · urban',
+    'cat cats': CATS_ART + '\nkami: supervises everything from the highest point.\norion: customer service — sees you, then runs.',
+    'sudo hire':'[sudo] password: ********\npermission granted ✔ redirecting to contact…',
+    gg:'gg wp',
+    luna:'the eye in the sky. it\'s watching.',
+    neko:'にゃー。curious. kami approves (orion is still asleep).',
+    miau:'meow',
+    lambda:'the identity function.',
+    hack:'initiating hack… error 403: better learn it for real in "where i\'m headed" ↑',
+    angel:'天使 — heaven\'s messenger.',
+    notfound:c=>`command not found: "${c}". type help.`
+  }
+};
+const ALIAS = {
+  'cat cats':'cat gatos','cat gatos':'cat gatos','sudo hire':'sudo contratar','sudo contratar':'sudo contratar',
+  '月':'luna','moon':'luna','luna':'luna','猫':'neko','neko':'neko','gato':'neko','cat':'neko',
+  'miau':'miau','meow':'miau','λ':'lambda','lambda':'lambda','天使':'angel','angel':'angel',
+  'hack':'hack','hackear':'hack','help':'help','ayuda':'help','whoami':'whoami','skills':'skills','gg':'gg'
+};
+function runCmd(raw){
+  const c = raw.trim().toLowerCase();
+  if(!c) return;
+  cPrint('λ ' + raw, 'c-in');
+  if(c === 'clear' || c === 'cls'){ cOut.innerHTML=''; return; }
+  if(c === 'lang en'){ setLang('en'); cPrint('language → english', 'c-sys'); return; }
+  if(c === 'lang es'){ setLang('es'); cPrint('idioma → español', 'c-sys'); return; }
+  const key = ALIAS[c];
+  const T = CMD[LANG];
+  // 'cat gatos'/'sudo contratar' viven con clave ES en ambos idiomas:
+  const lookup = {'cat gatos': LANG==='es' ? 'cat gatos' : 'cat cats',
+                  'sudo contratar': LANG==='es' ? 'sudo contratar' : 'sudo hire'};
+  if(key){
+    const realKey = lookup[key] || key;
+    cPrint(T[realKey]);
+    if(key === 'sudo contratar'){
+      setTimeout(()=>$('#contacto').scrollIntoView({behavior: REDUCED?'auto':'smooth'}), 900);
+    }
+  } else {
+    cPrint(T.notfound(c.slice(0,40)));
+  }
+}
+$('#c-form').addEventListener('submit', e=>{
+  e.preventDefault();
+  runCmd(cIn.value);
+  cIn.value = '';
+});
+cPrint(LANG==='es'
+  ? 'consola v1.0 — escribe help'
+  : 'console v1.0 — type help', 'c-sys');
+
+/* init */
+setLang(LANG);
+</script>
+</body>
+</html>
