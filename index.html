@@ -3,9 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>portafolio angel</title>
+<title>Angel Herrera — Portafolio</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cstyle%3Epath%7Bstroke:%23111%7D@media(prefers-color-scheme:dark)%7Bpath%7Bstroke:%23fff%7D%7D%3C/style%3E%3Cpath d='M16 3l3.6 8L28.5 11.8l-6.5 5.8 1.8 8.9L16 22.4 8.2 26.5l1.8-8.9-6.5-5.8 8.9-0.8z' fill='none' stroke-width='1.7' stroke-linejoin='round'/%3E%3C/svg%3E">
-<meta name="description" content="Landing page de Angel Herrera">
+<meta name="description" content="Angel Herrera: automatizo procesos, convierto datos en decisiones y hago fotografía. Proyectos con resultados medibles, casos reales y contacto.">
+<link rel="canonical" href="https://angel0-0.github.io/portafolio/">
+<meta name="theme-color" content="#0B0A0B">
+<!-- vista previa al compartir el enlace (WhatsApp, LinkedIn, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Angel Herrera">
+<meta property="og:title" content="Angel Herrera — Portafolio">
+<meta property="og:description" content="Automatización, datos y fotografía. Proyectos con resultados medibles y casos reales.">
+<meta property="og:url" content="https://angel0-0.github.io/portafolio/">
+<meta property="og:image" content="https://angel0-0.github.io/portafolio/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_MX">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Angel Herrera — Portafolio">
+<meta name="twitter:description" content="Automatización, datos y fotografía. Proyectos con resultados medibles y casos reales.">
+<meta name="twitter:image" content="https://angel0-0.github.io/portafolio/assets/og.jpg">
+<link rel="preload" as="image" href="assets/deco/perfil.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -238,12 +256,17 @@ a:focus-visible,button:focus-visible,input:focus-visible{
   box-shadow:0 0 38px -8px rgba(201,162,39,.35);
 }
 .hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+/* botones del hero: reutilizan .contact-cta en versión compacta */
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.contact-cta.cta-sm{margin:0;padding:12px 26px;font-size:.95rem}
+.contact-cta.cta-ghost{background:none;color:var(--oro);border:1px solid var(--oro)}
+.contact-cta.cta-ghost:hover{color:var(--neon);border-color:var(--neon)}
 .rose-divider{
   display:flex;align-items:center;gap:14px;margin:110px 0 34px;color:var(--oro);
   position:relative;
 }
 .cat-walk{
-  position:absolute;right:9%;bottom:7px;width:112px;cursor:default;
+  position:absolute;right:9%;bottom:7px;width:112px;height:auto;cursor:default;
   filter:drop-shadow(0 6px 10px rgba(94,22,34,.3));
   transition:transform .3s ease,filter .3s ease;transform-origin:bottom center;
 }
@@ -369,7 +392,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{
   background:rgba(11,10,11,.75);border:1px solid rgba(201,162,39,.35);
   border-radius:14px;padding:24px 22px 38px;position:relative;scroll-snap-align:start;
   transition:transform .3s,border-color .3s;
+  display:flex;flex-direction:column;
 }
+.case dl{flex:1;display:flex;flex-direction:column}
+.case dl dt:last-of-type{margin-top:auto;padding-top:16px}
 .case:hover{transform:translateY(-4px);border-color:var(--oro)}
 .case .num{
   font-family:var(--mono);font-size:.66rem;color:var(--oro);letter-spacing:.2em;
@@ -385,7 +411,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
   font-family:var(--mono);font-weight:600;font-size:1.5rem;color:var(--oro);
   display:block;margin-top:4px;
 }
-.case .metric small{font-size:.72rem;font-weight:400;color:rgba(247,244,239,.6)}
+.case .metric small{display:block;margin-top:5px;font-size:.72rem;font-weight:400;line-height:1.55;color:rgba(247,244,239,.6)}
 .tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .tools span{
   font-family:var(--mono);font-size:.74rem;padding:7px 14px;border-radius:6px;
@@ -538,6 +564,15 @@ footer .k{color:rgba(201,162,39,.5)}
   .cat-float img{width:78px}
   .cat-walk{width:84px;right:4%}
   .gal-wrap:not(.open){max-height:640px}
+  /* gustos en 2 columnas: la sección medía ~3 pantallas en una sola */
+  .cards{grid-template-columns:1fr 1fr;gap:10px}
+  .card{padding:14px 12px}
+  .card .ico{font-size:1.35rem}
+  .card h3{font-size:.92rem}
+  .card p{font-size:.78rem;line-height:1.45}
+  .rose-divider{margin:70px 0 28px}
+  .hero-actions{gap:10px}
+  .contact-cta.cta-sm{padding:11px 16px;font-size:.9rem}
 }
 
 /* ============================================================
@@ -566,11 +601,11 @@ footer .k{color:rgba(201,162,39,.5)}
       <button id="btn-es" class="active" aria-pressed="true">ES</button>
       <button id="btn-en" aria-pressed="false">EN</button>
     </div>
-    <button class="burger" id="burger" aria-label="Menú" aria-expanded="false" aria-controls="menu"><span></span></button>
+    <button class="burger" id="burger" aria-label="Menú" data-i18n-aria="a_menu" aria-expanded="false" aria-controls="menu"><span></span></button>
   </div>
 </header>
 
-<nav class="menu" id="menu" aria-label="Navegación principal">
+<nav class="menu" id="menu" aria-label="Navegación principal" data-i18n-aria="a_nav">
   <a href="#sobre-mi"><small>01</small><span data-i18n="nav_sobre">Sobre mí</span></a>
   <a href="#fotografia"><small>02</small><span data-i18n="nav_foto">Fotografía</span></a>
   <a href="#sistemas"><small>03</small><span data-i18n="nav_sis">Sistemas</span></a>
@@ -590,13 +625,17 @@ footer .k{color:rgba(201,162,39,.5)}
         <h1 class="glitch">Angel<br><span class="gold">Herrera</span></h1>
         <p class="hero-tagline"><span data-i18n="hero_tagline">el arte de fallar y no parar</span></p>
         <p class="hero-bio" data-i18n="hero_bio">Soy Angel. Estudio Ingeniería en Sistemas, hago fotografía y me gusta resolver problemas. Si no estoy trabajando o en algún proyecto estoy durmiendo con mis gatos, entrenando, en algún lugar aleatorio o con mis amigos. Me gusta ver el cielo, la luna y las estrellas.</p>
+        <div class="hero-actions">
+          <a class="contact-cta cta-sm" href="#sistemas" data-i18n="hero_cta_work">Ver mi trabajo →</a>
+          <a class="contact-cta cta-sm cta-ghost" data-cv href="assets/cv/CV_Angel_Herrera_ES.pdf" target="_blank" rel="noopener" data-i18n="hero_cta_cv">Descargar CV</a>
+        </div>
       </div>
       <figure class="hero-photo rev">
-        <img src="assets/deco/perfil.jpg" alt="Angel Herrera" width="720" height="720" loading="lazy" decoding="async">
+        <img src="assets/deco/perfil.webp" alt="Angel Herrera" width="640" height="640" fetchpriority="high" decoding="async">
       </figure>
     </div>
 
-    <div class="rose-divider" aria-hidden="true">♠️<img class="cat-walk" src="assets/deco/kami.png" alt=""></div>
+    <div class="rose-divider" aria-hidden="true">♠️<img class="cat-walk" src="assets/deco/kami.webp" alt="" width="260" height="312" loading="lazy" decoding="async"></div>
 
     <p class="kicker rev" data-i18n="about_cards_kicker">cuando no estoy con algo tecnológico…</p>
     <div class="cards" style="margin-top:22px">
@@ -615,7 +654,7 @@ footer .k{color:rgba(201,162,39,.5)}
 <!-- ===== 02 · FOTOGRAFÍA ===== -->
 <section class="section fade-top" id="fotografia" style="--fade-from:var(--negro)">
   <div class="stars" aria-hidden="true"></div>
-  <img class="moon" src="assets/deco/luna.jpg" alt="" aria-hidden="true" loading="lazy" width="640" height="640">
+  <img class="moon" src="assets/deco/luna.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="320" height="320">
   <span class="kanji" aria-hidden="true">月</span>
   <div class="wrap" style="position:relative">
     <div class="foto-head">
@@ -623,7 +662,7 @@ footer .k{color:rgba(201,162,39,.5)}
       <h2 class="s-title serif-title" data-i18n="foto_title">Fotografía</h2>
       <p data-i18n="foto_copy">Capturo retratos, eventos y productos. Atención independiente, trato directo.</p>
     </div>
-    <div class="filtros" role="group" aria-label="Filtrar galería">
+    <div class="filtros" role="group" aria-label="Filtrar galería" data-i18n-aria="a_filtros">
       <button class="active" data-cat="todo" data-i18n="f_todo">Todo</button>
       <button data-cat="retratos" data-i18n="f_retratos">Retratos</button>
       <button data-cat="urbano" data-i18n="f_urbano">Urbano</button>
@@ -633,238 +672,238 @@ footer .k{color:rgba(201,162,39,.5)}
     <div class="gal-wrap" id="gal-wrap">
     <div class="gallery" id="gallery">
       <figure class="g-item" data-cat="urbano">
-        <button class="g-btn" data-full="assets/fotos/full/edge.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/edge.jpg" decoding="async" width="613" height="640" alt="Fotografía urbana — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/edge.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/edge.jpg" decoding="async" width="613" height="640" alt="Fotografía urbana — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/img_61901.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/img_61901.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/img_61901.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/img_61901.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="urbano">
-        <button class="g-btn" data-full="assets/fotos/full/pmunal.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pmunal.jpg" decoding="async" width="484" height="640" alt="Fotografía urbana — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pmunal.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pmunal.jpg" decoding="async" width="484" height="640" alt="Fotografía urbana — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="gatos">
-        <button class="g-btn" data-full="assets/fotos/full/pgato6.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pgato6.jpg" decoding="async" width="640" height="484" alt="Fotografía de gato — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pgato6.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pgato6.jpg" decoding="async" width="640" height="484" alt="Fotografía de gato — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pbiblioteca4.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pbiblioteca4.jpg" decoding="async" width="373" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pbiblioteca4.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pbiblioteca4.jpg" decoding="async" width="373" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="ediciones">
-        <button class="g-btn" data-full="assets/fotos/full/ptecho.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/ptecho.jpg" decoding="async" width="640" height="488" alt="Edición gráfica — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/ptecho.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/ptecho.jpg" decoding="async" width="640" height="488" alt="Edición gráfica — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="gatos">
-        <button class="g-btn" data-full="assets/fotos/full/pgato7.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pgato7.jpg" decoding="async" width="640" height="367" alt="Fotografía de gato — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pgato7.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pgato7.jpg" decoding="async" width="640" height="367" alt="Fotografía de gato — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pbebedero.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pbebedero.jpg" decoding="async" width="480" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pbebedero.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pbebedero.jpg" decoding="async" width="480" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="urbano">
-        <button class="g-btn" data-full="assets/fotos/full/pmunal2.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pmunal2.jpg" decoding="async" width="518" height="640" alt="Fotografía urbana — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pmunal2.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pmunal2.jpg" decoding="async" width="518" height="640" alt="Fotografía urbana — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/img_6179.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/img_6179.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/img_6179.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/img_6179.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pchapu.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pchapu.jpg" decoding="async" width="488" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pchapu.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pchapu.jpg" decoding="async" width="488" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="ediciones">
-        <button class="g-btn" data-full="assets/fotos/full/pmuseo.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pmuseo.jpg" decoding="async" width="486" height="640" alt="Edición gráfica — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pmuseo.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pmuseo.jpg" decoding="async" width="486" height="640" alt="Edición gráfica — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="gatos">
-        <button class="g-btn" data-full="assets/fotos/full/pgato3.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pgato3.jpg" decoding="async" width="640" height="373" alt="Fotografía de gato — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pgato3.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pgato3.jpg" decoding="async" width="640" height="373" alt="Fotografía de gato — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="urbano">
-        <button class="g-btn" data-full="assets/fotos/full/plago.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/plago.jpg" decoding="async" width="640" height="422" alt="Fotografía urbana — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/plago.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/plago.jpg" decoding="async" width="640" height="422" alt="Fotografía urbana — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="urbano">
-        <button class="g-btn" data-full="assets/fotos/full/pbocho.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pbocho.jpg" decoding="async" width="573" height="640" alt="Fotografía urbana — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pbocho.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pbocho.jpg" decoding="async" width="573" height="640" alt="Fotografía urbana — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pcineteca.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pcineteca.jpg" decoding="async" width="437" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pcineteca.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pcineteca.jpg" decoding="async" width="437" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/dscf1194.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/dscf1194.jpg" decoding="async" width="373" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/dscf1194.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/dscf1194.jpg" decoding="async" width="373" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="urbano">
-        <button class="g-btn" data-full="assets/fotos/full/pblioteca2.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pblioteca2.jpg" decoding="async" width="374" height="640" alt="Fotografía urbana — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pblioteca2.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pblioteca2.jpg" decoding="async" width="374" height="640" alt="Fotografía urbana — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="ediciones">
-        <button class="g-btn" data-full="assets/fotos/full/pgatos.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pgatos.jpg" decoding="async" width="640" height="458" alt="Edición gráfica — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pgatos.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pgatos.jpg" decoding="async" width="640" height="458" alt="Edición gráfica — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="gatos">
-        <button class="g-btn" data-full="assets/fotos/full/pgato2.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pgato2.jpg" decoding="async" width="640" height="373" alt="Fotografía de gato — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pgato2.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pgato2.jpg" decoding="async" width="640" height="373" alt="Fotografía de gato — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/img_6115.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/img_6115.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/img_6115.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/img_6115.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/img_6159.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/img_6159.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/img_6159.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/img_6159.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="urbano">
-        <button class="g-btn" data-full="assets/fotos/full/plago2.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/plago2.jpg" decoding="async" width="480" height="640" alt="Fotografía urbana — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/plago2.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/plago2.jpg" decoding="async" width="480" height="640" alt="Fotografía urbana — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="ediciones">
-        <button class="g-btn" data-full="assets/fotos/full/pmuseo2.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pmuseo2.jpg" decoding="async" width="489" height="640" alt="Edición gráfica — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pmuseo2.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pmuseo2.jpg" decoding="async" width="489" height="640" alt="Edición gráfica — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="ediciones">
-        <button class="g-btn" data-full="assets/fotos/full/pmuseo3.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pmuseo3.jpg" decoding="async" width="486" height="640" alt="Edición gráfica — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pmuseo3.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pmuseo3.jpg" decoding="async" width="486" height="640" alt="Edición gráfica — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="gatos">
-        <button class="g-btn" data-full="assets/fotos/full/pgato4.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pgato4.jpg" decoding="async" width="640" height="484" alt="Fotografía de gato — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pgato4.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pgato4.jpg" decoding="async" width="640" height="484" alt="Fotografía de gato — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="gatos">
-        <button class="g-btn" data-full="assets/fotos/full/pgato5.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pgato5.jpg" decoding="async" width="640" height="484" alt="Fotografía de gato — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pgato5.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pgato5.jpg" decoding="async" width="640" height="484" alt="Fotografía de gato — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/img_6218.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/img_6218.jpg" decoding="async" width="437" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/img_6218.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/img_6218.jpg" decoding="async" width="437" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/img_6253.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/img_6253.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/img_6253.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/img_6253.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="urbano">
-        <button class="g-btn" data-full="assets/fotos/full/ptecho2.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/ptecho2.jpg" decoding="async" width="640" height="367" alt="Fotografía urbana — Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/ptecho2.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/ptecho2.jpg" decoding="async" width="640" height="367" alt="Fotografía urbana — Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/img_6290.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/img_6290.jpg" decoding="async" width="437" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/img_6290.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/img_6290.jpg" decoding="async" width="437" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/img_6343.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/img_6343.jpg" decoding="async" width="437" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/img_6343.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/img_6343.jpg" decoding="async" width="437" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/img_6352.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/img_6352.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/img_6352.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/img_6352.jpg" decoding="async" width="640" height="437" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pbebedero2.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pbebedero2.jpg" decoding="async" width="512" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pbebedero2.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pbebedero2.jpg" decoding="async" width="512" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pbiblioteca.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pbiblioteca.jpg" decoding="async" width="518" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pbiblioteca.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pbiblioteca.jpg" decoding="async" width="518" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pbiblioteca3.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pbiblioteca3.jpg" decoding="async" width="373" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pbiblioteca3.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pbiblioteca3.jpg" decoding="async" width="373" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pchapu2.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pchapu2.jpg" decoding="async" width="488" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pchapu2.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pchapu2.jpg" decoding="async" width="488" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pchapu3.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pchapu3.jpg" decoding="async" width="487" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pchapu3.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pchapu3.jpg" decoding="async" width="487" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pchapu4.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pchapu4.jpg" decoding="async" width="487" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pchapu4.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pchapu4.jpg" decoding="async" width="487" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pchapur.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pchapur.jpg" decoding="async" width="488" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pchapur.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pchapur.jpg" decoding="async" width="488" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pdinamos.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pdinamos.jpg" decoding="async" width="374" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pdinamos.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pdinamos.jpg" decoding="async" width="374" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pfuente.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pfuente.jpg" decoding="async" width="640" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pfuente.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pfuente.jpg" decoding="async" width="640" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/pfuente1.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/pfuente1.jpg" decoding="async" width="640" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/pfuente1.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/pfuente1.jpg" decoding="async" width="640" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/plifetime.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/plifetime.jpg" decoding="async" width="640" height="432" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/plifetime.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/plifetime.jpg" decoding="async" width="640" height="432" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/ptecho3.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/ptecho3.jpg" decoding="async" width="488" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/ptecho3.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/ptecho3.jpg" decoding="async" width="488" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/ptecho4.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/ptecho4.jpg" decoding="async" width="640" height="640" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/ptecho4.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/ptecho4.jpg" decoding="async" width="640" height="640" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <figure class="g-item" data-cat="retratos">
-        <button class="g-btn" data-full="assets/fotos/full/img_3129.jpg" aria-label="Ampliar foto">
-          <img src="assets/fotos/thumb/img_3129.jpg" decoding="async" width="640" height="411" alt="Retrato — fotografía de Angel Herrera">
+        <button class="g-btn" data-full="assets/fotos/full/img_3129.jpg" aria-label="Ampliar foto" data-i18n-aria="a_ampliar">
+          <img data-src="assets/fotos/thumb/img_3129.jpg" decoding="async" width="640" height="411" alt="Retrato — fotografía de Angel Herrera">
         </button>
       </figure>
       <!--NUEVAS_FOTOS_AQUI-->
@@ -884,66 +923,90 @@ footer .k{color:rgba(201,162,39,.5)}
     <p style="max-width:60ch" data-i18n="sis_copy">Automatizo lo repetitivo y convierto datos en decisiones. Menos trabajo manual, más tiempo para lo que importa.</p>
 
     <div class="case-nav">
-      <button class="case-btn" id="case-prev" aria-label="Anterior">‹</button>
-      <button class="case-btn" id="case-next" aria-label="Siguiente">›</button>
+      <button class="case-btn" id="case-prev" aria-label="Anterior" data-i18n-aria="a_prev">‹</button>
+      <button class="case-btn" id="case-next" aria-label="Siguiente" data-i18n-aria="a_next">›</button>
     </div>
     <div class="case-grid" id="case-grid">
+      <!-- Orden: lo vigente primero, luego logros, luego casos cerrados.
+           Para agregar un proyecto: copia un <article class="case rev"> completo,
+           cambia el prefijo de sus claves (e3_, e4_…) y agrega esas claves en I18N (es y en). -->
+      <article class="case rev">
+        <span class="num">EN_CURSO_01</span>
+        <h3 data-i18n="e1_t">ERP a la medida · mi trabajo actual</h3>
+        <dl>
+          <dt data-i18n="lbl_reto">Reto</dt><dd data-i18n="e1_p">Construir desde cero el sistema que usará toda la empresa, en un equipo de dos desarrolladores y cubriendo el ciclo completo.</dd>
+          <dt data-i18n="lbl_hago">Qué hago</dt><dd data-i18n="e1_h">Levanto los requerimientos con cada área (una por módulo), diseñé la base de datos y la arquitectura funcional, y colaboro en el desarrollo de los módulos apoyado en herramientas de IA.</dd>
+          <dt data-i18n="lbl_resultado">Resultado</dt>
+          <dd><span class="metric"><span data-i18n="e1_metric">9 módulos</span> <small data-i18n="e1_m">funcionando · previsto para ~160 usuarios y ~100 contratistas externos</small></span></dd>
+        </dl>
+      </article>
+      <article class="case rev">
+        <span class="num">EN_CURSO_02</span>
+        <h3 data-i18n="e2_t">BissMan · app para administrar negocios</h3>
+        <dl>
+          <dt data-i18n="lbl_que_es">Qué es</dt><dd data-i18n="e2_p">App de administración marca blanca para negocios pequeños y medianos: venta, inventario, deudas, consignación y reportes. Hecha con Flutter y Firebase.</dd>
+          <dt data-i18n="lbl_hago">Qué hago</dt><dd data-i18n="e2_h">Diseño el producto, levanto los requerimientos con cada negocio, defino los flujos de usuario y coordino el desarrollo, apoyado en herramientas de IA.</dd>
+          <dt data-i18n="lbl_resultado">Resultado</dt>
+          <dd><span class="metric"><span data-i18n="e2_metric">2 negocios</span> <small data-i18n="e2_m">piloto ya la usan, cada uno con su marca, catálogo y base de datos</small></span></dd>
+        </dl>
+      </article>
+      <!--NUEVOS_PROYECTOS_AQUI-->
+      <article class="case rev">
+        <span class="num">LOGRO_★</span>
+        <h3 data-i18n="c5_t">Innovation Meetup 2026 - Cancún</h3>
+        <dl>
+          <dt data-i18n="lbl_reto">Reto</dt><dd data-i18n="c5_p">Para HPE: convertir datos públicos de empresas en oportunidades comerciales priorizadas, sin el costo de un CRM tradicional.</dd>
+          <dt data-i18n="lbl_rol">Mi rol</dt><dd data-i18n="c5_h">Dirección general y visión de producto de ALICE (Account-Level Intelligence &amp; Customer Evaluation), una plataforma de inteligencia comercial con IA. Conceptualicé el producto, coordiné al equipo y el reparto de tareas, y colaboré en el diseño de la interfaz.</dd>
+          <dt data-i18n="lbl_resultado">Resultado</dt>
+          <dd><span class="metric"><span data-i18n="c5_metric">Top 5 de 20</span> <small data-i18n="c5_m">equipos · finalista nacional, 2.º año consecutivo</small></span></dd>
+        </dl>
+        <a class="case-link" href="https://drive.google.com/drive/folders/1xKZj3upuC2Xn-6wI0CAh6GogbrTbxf9z?usp=sharing" target="_blank" rel="noopener" aria-label="Ver documentación del Innovation Meetup 2026" data-i18n-aria="a_doc26"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M4 4h10M4 4v10M4 4l10.5 10.5"/></svg></a>
+      </article>
+      <article class="case rev">
+        <span class="num">LOGRO_★</span>
+        <h3 data-i18n="c4_t">Innovation Meetup 2025 - Cancún</h3>
+        <dl>
+          <dt data-i18n="lbl_reto">Reto</dt><dd data-i18n="c4_p">Innovation Meetup junta equipos de todos los campus del país a resolver un reto real en pocos días. El nuestro: un prototipo de web para venta a colaboradores de la empresa.</dd>
+          <dt data-i18n="lbl_hice">Qué hicimos</dt><dd data-i18n="c4_h">Construimos el prototipo funcional, la documentación técnica y el BPM del proceso, y lo presentamos en inglés ante el jurado.</dd>
+          <dt data-i18n="lbl_resultado">Resultado</dt>
+          <dd><span class="metric"><span data-i18n="c4_metric">Top 5 de 20</span> <small data-i18n="c4_m">equipos · finalista nacional</small></span></dd>
+        </dl>
+        <a class="case-link" href="https://drive.google.com/drive/folders/1Sv5PJGqzNkJRxQjqNZtbJatmzR_8EgCA?usp=sharing" target="_blank" rel="noopener" aria-label="Ver documentación del Innovation Meetup 2025" data-i18n-aria="a_doc25"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M4 4h10M4 4v10M4 4l10.5 10.5"/></svg></a>
+      </article>
       <article class="case rev">
         <span class="num">CASO_01</span>
         <h3 data-i18n="c1_t">Automatización de pruebas de RRHH</h3>
         <dl>
-          <dt data-i18n="lbl_problema">Problema</dt><dd data-i18n="c1_p">Calificar Terman-Merrill y Cleaver a mano tomaba ~20 min por prueba.</dd>
+          <dt data-i18n="lbl_problema">Problema</dt><dd data-i18n="c1_p">En RRHH calificaban las pruebas psicométricas Terman-Merrill y Cleaver a mano: ~20 min por prueba, con margen de error y horas perdidas en algo repetitivo.</dd>
           <dt data-i18n="lbl_hice_yo">Qué hice</dt><dd data-i18n="c1_h">Programé en Python la calificación de ambas pruebas: Terman como aplicación de escritorio (.exe) y Cleaver como web-app. Las dos exportan en PDF sus resultados y gráficas, al instante y sin errores de cálculo.</dd>
           <dt data-i18n="lbl_resultado">Resultado</dt>
-          <dd><span class="metric">20 → 4 min <small data-i18n="c1_m">por prueba (−80%)</small></span></dd>
+          <dd><span class="metric">20 → 4 min <small data-i18n="c1_m">por prueba · −80% del tiempo</small></span></dd>
         </dl>
       </article>
       <article class="case rev">
         <span class="num">CASO_02</span>
         <h3 data-i18n="c2_t">Digitalización de documentos</h3>
         <dl>
-          <dt data-i18n="lbl_problema">Problema</dt><dd data-i18n="c2_p">Procesos en papel, lentos y difíciles de rastrear.</dd>
-          <dt data-i18n="lbl_hice_yo">Qué hice</dt><dd data-i18n="c2_h">Flujos digitales vinculados a Google Workspace.</dd>
+          <dt data-i18n="lbl_problema">Problema</dt><dd data-i18n="c2_p">Trámites en papel: lentos, fáciles de traspapelar y difíciles de rastrear cuando alguien preguntaba en qué iba su proceso.</dd>
+          <dt data-i18n="lbl_hice_yo">Qué hice</dt><dd data-i18n="c2_h">Digitalicé ~20 documentos operativos clave y armé flujos vinculados a Google Workspace, con todo centralizado, rastreable y accesible desde cualquier lugar.</dd>
           <dt data-i18n="lbl_resultado">Resultado</dt>
-          <dd><span class="metric">+50% <small data-i18n="c2_m">menos tiempo de proceso</small></span></dd>
+          <dd><span class="metric">+60% <small data-i18n="c2_m">menos tiempo de proceso</small></span></dd>
         </dl>
       </article>
       <article class="case rev">
         <span class="num">CASO_03</span>
         <h3 data-i18n="c3_t">Análisis de ventas y stock</h3>
         <dl>
-          <dt data-i18n="lbl_problema">Problema</dt><dd data-i18n="c3_p">Inventario sin niveles claros: faltantes y sobrantes.</dd>
-          <dt data-i18n="lbl_hice_yo">Qué hice</dt><dd data-i18n="c3_h">Máximos y mínimos por producto a partir de los datos de venta del año anterior.</dd>
+          <dt data-i18n="lbl_problema">Problema</dt><dd data-i18n="c3_p">Inventario sin niveles claros: unos productos se agotaban y otros se quedaban estancados, amarrando dinero en stock que no rotaba.</dd>
+          <dt data-i18n="lbl_hice_yo">Qué hice</dt><dd data-i18n="c3_h">Analicé más de 100,000 registros de venta del año anterior, ya sin duplicados, y definí máximos y mínimos por producto para todo el catálogo. Los niveles quedaron cargados en el ERP de la empresa.</dd>
           <dt data-i18n="lbl_resultado">Resultado</dt>
-          <dd><span class="metric"><span data-i18n="c3_metric">Visión clara</span> <small data-i18n="c3_m">de productos óptimos definidos por datos</small></span></dd>
+          <dd><span class="metric"><span data-i18n="c3_metric">+100,000</span> <small data-i18n="c3_m">registros de venta analizados para fijar los niveles de todo el catálogo</small></span></dd>
         </dl>
-      </article>
-      <article class="case rev">
-        <span class="num">LOGRO_★</span>
-        <h3 data-i18n="c4_t">Innovation Meetup 2025 - Cancún</h3>
-        <dl>
-          <dt data-i18n="lbl_reto">Reto</dt><dd data-i18n="c4_p">Prototipo de web para venta a colaboradores de la empresa, contra equipos de todo el país.</dd>
-          <dt data-i18n="lbl_hice">Qué hicimos</dt><dd data-i18n="c4_h">Prototipo, documentación técnica/BPM y presentación en inglés.</dd>
-          <dt data-i18n="lbl_resultado">Resultado</dt>
-          <dd><span class="metric" data-i18n="c4_m">Finalista <small>nacional</small></span></dd>
-        </dl>
-        <a class="case-link" href="https://drive.google.com/drive/folders/1Sv5PJGqzNkJRxQjqNZtbJatmzR_8EgCA?usp=sharing" target="_blank" rel="noopener" aria-label="Ver documentación del Innovation Meetup 2025"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M4 4h10M4 4v10M4 4l10.5 10.5"/></svg></a>
-      </article>
-      <article class="case rev">
-        <span class="num">LOGRO_★</span>
-        <h3 data-i18n="c5_t">Innovation Meetup 2026 - Cancún</h3>
-        <dl>
-          <dt data-i18n="lbl_reto">Reto</dt><dd data-i18n="c5_p">Para HPE: convertir datos públicos de empresas en oportunidades comerciales priorizadas, sin el costo de un CRM tradicional.</dd>
-          <dt data-i18n="lbl_hice">Qué hicimos</dt><dd data-i18n="c5_h">ALICE (Account-Level Intelligence & Customer Evaluation): plataforma con motor de IA que arma el perfil 360° de cada cuenta, un Strategic Score de propensión de compra, recomienda soluciones HPE y genera el speech comercial. Backend Python/FastAPI + SQLAlchemy, desplegable local o en la nube.</dd>
-          <dt data-i18n="lbl_resultado">Resultado</dt>
-          <dd><span class="metric"><span data-i18n="c5_metric">Finalista</span> <small data-i18n="c5_m">nacional · 2do año consecutivo</small></span></dd>
-        </dl>
-        <a class="case-link" href="https://drive.google.com/drive/folders/1xKZj3upuC2Xn-6wI0CAh6GogbrTbxf9z?usp=sharing" target="_blank" rel="noopener" aria-label="Ver documentación del Innovation Meetup 2026 - Cancún"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M4 4h10M4 4v10M4 4l10.5 10.5"/></svg></a>
       </article>
     </div>
 
-    <div class="tools rev" aria-label="Herramientas">
-      <span>Python</span><span>Power BI</span><span>Excel++</span><span>Google Workspace</span><span>GitHub</span><span data-i18n="tool_ia">IA aplicada</span>
+    <div class="tools rev" aria-label="Herramientas" data-i18n-aria="a_tools">
+      <span>Python</span><span>SQL</span><span>Power BI</span><span>Excel++</span><span>Google Workspace</span><span>GitHub</span><span data-i18n="tool_ia">IA aplicada</span>
     </div>
 
     <div class="servicios">
@@ -991,7 +1054,9 @@ footer .k{color:rgba(201,162,39,.5)}
     <div class="contact-links">
       <a href="https://www.instagram.com/angel.808_" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.linkedin.com/in/angelcattastrophic" target="_blank" rel="noopener" id="linkedin-link">LinkedIn</a>
+      <a href="https://github.com/angel0-0" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:angel.herr.808@gmail.com" data-i18n="contacto_mail">Correo</a>
+      <a data-cv href="assets/cv/CV_Angel_Herrera_ES.pdf" target="_blank" rel="noopener">CV</a>
     </div>
   </div>
 </section>
@@ -1000,13 +1065,13 @@ footer .k{color:rgba(201,162,39,.5)}
 <!-- ===== CONSOLA SECRETA =====
      Seguridad: 100% cliente, respuestas hardcodeadas, sin eval(),
      sin red, input escapado vía textContent. Ver brief §6. -->
-<section id="consola" aria-label="Consola interactiva">
+<section id="consola" aria-label="Consola interactiva" data-i18n-aria="a_consola">
   <div class="console">
     <div class="console-bar">angel://consola — λ shell</div>
     <div class="console-out" id="c-out" aria-live="polite"></div>
     <form class="console-form" id="c-form">
       <span class="prompt" aria-hidden="true">λ</span>
-      <input id="c-in" type="text" autocomplete="off" spellcheck="false" maxlength="60" aria-label="Escribe un comando">
+      <input id="c-in" type="text" autocomplete="off" spellcheck="false" maxlength="60" aria-label="Escribe un comando" data-i18n-aria="a_cmd">
     </form>
   </div>
 </section>
@@ -1016,11 +1081,11 @@ footer .k{color:rgba(201,162,39,.5)}
 </footer>
 
 <!-- lightbox de la galería -->
-<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Imagen ampliada">
-  <button class="lb-btn lb-close" id="lb-close" aria-label="Cerrar">✕</button>
-  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Anterior">‹</button>
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Imagen ampliada" data-i18n-aria="a_lightbox">
+  <button class="lb-btn lb-close" id="lb-close" aria-label="Cerrar" data-i18n-aria="a_cerrar">✕</button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Anterior" data-i18n-aria="a_prev">‹</button>
   <img id="lb-img" src="" alt="">
-  <button class="lb-btn lb-next" id="lb-next" aria-label="Siguiente">›</button>
+  <button class="lb-btn lb-next" id="lb-next" aria-label="Siguiente" data-i18n-aria="a_next">›</button>
   <span class="lb-count" id="lb-count"></span>
 </div>
 
@@ -1035,12 +1100,14 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ============================================================
    I18N — ES / EN (recuerda elección durante la sesión)
    ============================================================ */
-const HTML_KEYS = new Set(['c4_m','c5_m']);
+const HTML_KEYS = new Set();   // claves cuyo valor lleva HTML (hoy ninguna)
 const I18N = {
 es:{
   nav_sobre:'Sobre mí', nav_foto:'Fotografía', nav_sis:'Sistemas', nav_rumbo:'Hacia dónde voy', nav_contacto:'Contacto',
   hero_kicker:'portafolio',
+  page_title:'Angel Herrera — Portafolio',
   hero_tagline:'el arte de fallar y no parar',
+  hero_cta_work:'Ver mi trabajo →', hero_cta_cv:'Descargar CV',
   hero_bio:'Soy Angel. Estudio Ingeniería en Sistemas, hago fotografía y me gusta resolver problemas. Si no estoy trabajando o en algún proyecto estoy durmiendo con mis gatos, entrenando, en algún lugar aleatorio o con mis amigos. Me gusta ver el cielo, la luna y las estrellas.',
   hero_photo_ph:'foto de perfil · pendiente',
   about_cards_kicker:'cuando no estoy con algo tecnológico…',
@@ -1059,27 +1126,36 @@ es:{
   sis_kicker:'03 · automatización & datos', sis_title:'Sistemas',
   sis_copy:'Automatizo lo repetitivo y convierto datos en decisiones. Menos trabajo manual, más tiempo para lo que importa.',
   lbl_problema:'Problema', lbl_hice:'Qué hicimos', lbl_hice_yo:'Qué hice', lbl_resultado:'Resultado', lbl_reto:'Reto',
+  lbl_hago:'Qué hago', lbl_que_es:'Qué es', lbl_rol:'Mi rol',
+  e1_t:'ERP a la medida · mi trabajo actual',
+  e1_p:'Construir desde cero el sistema que usará toda la empresa, en un equipo de dos desarrolladores y cubriendo el ciclo completo.',
+  e1_h:'Levanto los requerimientos con cada área (una por módulo), diseñé la base de datos y la arquitectura funcional, y colaboro en el desarrollo de los módulos apoyado en herramientas de IA.',
+  e1_metric:'9 módulos', e1_m:'funcionando · previsto para ~160 usuarios y ~100 contratistas externos',
+  e2_t:'BissMan · app para administrar negocios',
+  e2_p:'App de administración marca blanca para negocios pequeños y medianos: venta, inventario, deudas, consignación y reportes. Hecha con Flutter y Firebase.',
+  e2_h:'Diseño el producto, levanto los requerimientos con cada negocio, defino los flujos de usuario y coordino el desarrollo, apoyado en herramientas de IA.',
+  e2_metric:'2 negocios', e2_m:'piloto ya la usan, cada uno con su marca, catálogo y base de datos',
   c1_t:'Automatización de pruebas de RRHH',
   c1_p:'En RRHH calificaban las pruebas psicométricas Terman-Merrill y Cleaver a mano: ~20 min por prueba, con margen de error y horas perdidas en algo repetitivo.',
   c1_h:'Programé en Python la calificación de ambas pruebas: Terman como aplicación de escritorio (.exe) y Cleaver como web-app. Las dos exportan en PDF sus resultados y gráficas, al instante y sin errores de cálculo.',
   c1_m:'por prueba · −80% del tiempo',
   c2_t:'Digitalización de documentos',
   c2_p:'Trámites en papel: lentos, fáciles de traspapelar y difíciles de rastrear cuando alguien preguntaba en qué iba su proceso.',
-  c2_h:'Digitalicé los documentos y armé flujos vinculados a Google Workspace, con todo centralizado, rastreable y accesible desde cualquier lugar.',
+  c2_h:'Digitalicé ~20 documentos operativos clave y armé flujos vinculados a Google Workspace, con todo centralizado, rastreable y accesible desde cualquier lugar.',
   c2_m:'menos tiempo de proceso',
   c3_t:'Análisis de ventas y stock',
   c3_p:'Inventario sin niveles claros: unos productos se agotaban y otros se quedaban estancados, amarrando dinero en stock que no rotaba.',
-  c3_h:'Analicé los datos de venta del año anterior y definí máximos y mínimos óptimos por producto, para saber cuándo y cuánto reabastecer de cada uno.',
-  c3_metric:'Visión clara',
-  c3_m:'de productos óptimos definidos por datos',
+  c3_h:'Analicé más de 100,000 registros de venta del año anterior, ya sin duplicados, y definí máximos y mínimos por producto para todo el catálogo. Los niveles quedaron cargados en el ERP de la empresa.',
+  c3_metric:'+100,000',
+  c3_m:'registros de venta analizados para fijar los niveles de todo el catálogo',
   c4_t:'Innovation Meetup 2025 - Cancún',
-  c4_p:'Innovation Meetup junta equipos de todo el país a resolver un reto real en pocos días. El nuestro: un prototipo de web para venta a colaboradores de la empresa.',
+  c4_p:'Innovation Meetup junta equipos de todos los campus del país a resolver un reto real en pocos días. El nuestro: un prototipo de web para venta a colaboradores de la empresa.',
   c4_h:'Construimos el prototipo funcional, la documentación técnica y el BPM del proceso, y lo presentamos en inglés ante el jurado.',
-  c4_m:'Finalista <small>nacional</small>',
+  c4_metric:'Top 5 de 20', c4_m:'equipos · finalista nacional',
   c5_t:'Innovation Meetup 2026 - Cancún',
   c5_p:'Para HPE: convertir datos públicos de empresas en oportunidades comerciales priorizadas, sin el costo de un CRM tradicional.',
-  c5_h:'ALICE (Account-Level Intelligence & Customer Evaluation): plataforma con motor de IA que arma el perfil 360° de cada cuenta, un Strategic Score de propensión de compra, recomienda soluciones HPE y genera el speech comercial. Backend Python/FastAPI + SQLAlchemy, desplegable local o en la nube.',
-  c5_metric:'Finalista', c5_m:'<small>nacional</small> · 2do año consecutivo',
+  c5_h:'Dirección general y visión de producto de ALICE (Account-Level Intelligence & Customer Evaluation), una plataforma de inteligencia comercial con IA. Conceptualicé el producto, coordiné al equipo y el reparto de tareas, y colaboré en el diseño de la interfaz.',
+  c5_metric:'Top 5 de 20', c5_m:'equipos · finalista nacional, 2.º año consecutivo',
   tool_ia:'IA aplicada',
   serv_kicker:'consultoría TI · para tu negocio', serv_title:'¿Tu negocio necesita algo?',
   s1_t:'Diagnóstico con plantillas', s1_p:'Te mando plantillas listas para llenar; con los datos graficamos si estás cumpliendo tus objetivos.',
@@ -1091,11 +1167,19 @@ es:{
   rumbo_copy:'Me estoy adentrando en la ciberseguridad, automatización, consultoría y mejora de procesos. Tengo las bases y las estoy llevando más lejos, aprendiendo constantemente y superando desafíos, obstáculos y miedos.',
   contacto_kicker:'05 · ¿el fin?', contacto_title:'¿Tienes algo en mente?',
   contacto_cta:'Escríbeme →', contacto_mail:'Correo',
+  a_menu:'Menú', a_nav:'Navegación principal', a_filtros:'Filtrar galería', a_ampliar:'Ampliar foto',
+  a_prev:'Anterior', a_next:'Siguiente', a_cerrar:'Cerrar', a_tools:'Herramientas', a_cmd:'Escribe un comando',
+  a_lightbox:'Imagen ampliada', a_consola:'Consola interactiva',
+  a_doc25:'Ver documentación del Innovation Meetup 2025', a_doc26:'Ver documentación del Innovation Meetup 2026',
+  alt_urbano:'Fotografía urbana — Angel Herrera', alt_retratos:'Retrato — fotografía de Angel Herrera',
+  alt_gatos:'Fotografía de gato — Angel Herrera', alt_ediciones:'Edición gráfica — Angel Herrera',
 },
 en:{
   nav_sobre:'About me', nav_foto:'Photography', nav_sis:'Systems', nav_rumbo:'Where I\'m headed', nav_contacto:'Contact',
   hero_kicker:'portfolio',
+  page_title:'Angel Herrera — Portfolio',
   hero_tagline:'find what you love and let it kill you',
+  hero_cta_work:'See my work →', hero_cta_cv:'Download CV',
   hero_bio:'I\'m Angel. I study Systems Engineering, shoot photography and like solving problems. When I\'m not working or deep in a project, I\'m napping with my cats, training, somewhere random, or out with my friends. I like watching the sky, the moon and the stars.',
   hero_photo_ph:'profile photo · pending',
   about_cards_kicker:'when I\'m not in tech…',
@@ -1114,27 +1198,36 @@ en:{
   sis_kicker:'03 · automation & data', sis_title:'Systems',
   sis_copy:'I automate the repetitive and turn data into decisions. Less manual work, more time for what matters.',
   lbl_problema:'Problem', lbl_hice:'What we did', lbl_hice_yo:'What I did', lbl_resultado:'Result', lbl_reto:'Challenge',
+  lbl_hago:'What I do', lbl_que_es:'What it is', lbl_rol:'My role',
+  e1_t:'Custom ERP · my current job',
+  e1_p:'Build from scratch the system the whole company will run on, in a two-developer team covering the full cycle.',
+  e1_h:'I gather requirements with each area (one per module), designed the database and the functional architecture, and collaborate on module development, supported by AI tools.',
+  e1_metric:'9 modules', e1_m:'live · planned for ~160 users and ~100 external contractors',
+  e2_t:'BissMan · business management app',
+  e2_p:'White-label management app for small and medium businesses: sales, inventory, debts, consignment and reports. Built with Flutter and Firebase.',
+  e2_h:'I design the product, gather requirements with each business, define the user flows and coordinate development, supported by AI tools.',
+  e2_metric:'2 businesses', e2_m:'already piloting it, each with its own branding, catalog and database',
   c1_t:'HR test automation',
   c1_p:'HR graded the Terman-Merrill and Cleaver psychometric tests by hand: ~20 min each, error-prone and hours lost on something repetitive.',
   c1_h:'I coded both tests\' grading in Python: Terman as a desktop app (.exe) and Cleaver as a web app. Both export their results and charts to PDF — instantly and with no math errors.',
   c1_m:'per test · −80% of the time',
   c2_t:'Document digitization',
   c2_p:'Paper-based procedures: slow, easy to misplace and hard to track when someone asked where their process stood.',
-  c2_h:'I digitized the documents and built flows linked to Google Workspace — everything centralized, traceable and accessible from anywhere.',
+  c2_h:'I digitized ~20 key operational documents and built flows linked to Google Workspace — everything centralized, traceable and accessible from anywhere.',
   c2_m:'less processing time',
   c3_t:'Sales & stock analysis',
   c3_p:'Inventory with no clear levels: some products ran out while others piled up, tying money into stock that wasn\'t moving.',
-  c3_h:'I analyzed last year\'s sales data and set optimal max and min levels per product, so we knew when and how much to restock of each one.',
-  c3_metric:'Clear picture',
-  c3_m:'of optimal stock, defined by data',
+  c3_h:'I analyzed over 100,000 sales records from the previous year, deduplicated, and set max and min levels per product across the whole catalog. The levels were loaded into the company ERP.',
+  c3_metric:'100,000+',
+  c3_m:'sales records analyzed to set stock levels for the whole catalog',
   c4_t:'Innovation Meetup 2025 - Cancún',
-  c4_p:'Innovation Meetup brings teams from across the country to solve a real challenge in a few days. Ours: a web prototype for selling to company employees.',
+  c4_p:'Innovation Meetup brings teams from every campus in the country to solve a real challenge in a few days. Ours: a web prototype for selling to company employees.',
   c4_h:'We built the working prototype, the technical and BPM documentation, and pitched it in English to the judges.',
-  c4_m:'National finalist',
+  c4_metric:'Top 5 of 20', c4_m:'teams · national finalist',
   c5_t:'Innovation Meetup 2026 - Cancún',
   c5_p:'For HPE: turn companies\' public data into prioritized sales opportunities, without the cost of a traditional CRM.',
-  c5_h:'ALICE (Account-Level Intelligence & Customer Evaluation): an AI-powered platform that builds a 360° profile of each account, a Strategic Score for purchase propensity, recommends HPE solutions and generates the sales pitch. Python/FastAPI + SQLAlchemy backend, deployable on-prem or cloud.',
-  c5_metric:'National finalist', c5_m:'<small>2nd year in a row</small>',
+  c5_h:'Overall direction and product vision of ALICE (Account-Level Intelligence & Customer Evaluation), an AI commercial-intelligence platform. I shaped the product concept, coordinated the team and task distribution, and collaborated on interface design.',
+  c5_metric:'Top 5 of 20', c5_m:'teams · national finalist, 2nd year in a row',
   tool_ia:'Applied AI',
   serv_kicker:'IT consulting · for your business', serv_title:'Does your business need something?',
   s1_t:'Template-based diagnosis', s1_p:'I send you ready-to-fill templates; with the data we chart whether you\'re hitting your goals.',
@@ -1146,6 +1239,12 @@ en:{
   rumbo_copy:'I\'m diving into cybersecurity, automation, consulting and process improvement. I\'ve got the foundations and I\'m taking them further — constantly learning, overcoming challenges, obstacles and fears.',
   contacto_kicker:'05 · the end?', contacto_title:'Got something in mind?',
   contacto_cta:'Email me →', contacto_mail:'Email',
+  a_menu:'Menu', a_nav:'Main navigation', a_filtros:'Filter gallery', a_ampliar:'Enlarge photo',
+  a_prev:'Previous', a_next:'Next', a_cerrar:'Close', a_tools:'Tools', a_cmd:'Type a command',
+  a_lightbox:'Enlarged image', a_consola:'Interactive console',
+  a_doc25:'See the Innovation Meetup 2025 documentation', a_doc26:'See the Innovation Meetup 2026 documentation',
+  alt_urbano:'Urban photography — Angel Herrera', alt_retratos:'Portrait — photography by Angel Herrera',
+  alt_gatos:'Cat photography — Angel Herrera', alt_ediciones:'Graphic edit — Angel Herrera',
 }};
 
 let LANG = sessionStorage.getItem('lang') || 'es';
@@ -1159,6 +1258,18 @@ function setLang(l){
     if(v === undefined) return;
     if(HTML_KEYS.has(k)) el.innerHTML = v; else el.textContent = v;
   });
+  // textos que no se ven pero sí se leen: título, aria-label y alt
+  document.title = I18N[l].page_title;
+  $$('[data-i18n-aria]').forEach(el=>{
+    const v = I18N[l][el.dataset.i18nAria];
+    if(v !== undefined) el.setAttribute('aria-label', v);
+  });
+  $$('.g-item').forEach(it=>{
+    const v = I18N[l]['alt_' + it.dataset.cat], im = it.querySelector('img');
+    if(v !== undefined && im) im.alt = v;
+  });
+  // el CV que se descarga sigue al idioma activo
+  $$('[data-cv]').forEach(a=>{ a.href = 'assets/cv/CV_Angel_Herrera_' + (l==='en' ? 'EN' : 'ES') + '.pdf'; });
   $('#btn-es').classList.toggle('active', l==='es');
   $('#btn-en').classList.toggle('active', l==='en');
   $('#btn-es').setAttribute('aria-pressed', l==='es');
@@ -1216,7 +1327,7 @@ if(moonEl){
     moonEl.classList.add('moon-fading');
     setTimeout(()=>{
       moonEl.classList.toggle('moon-px', toPixel);
-      moonEl.src = toPixel ? 'assets/deco/luna_pixel.png' : 'assets/deco/luna.jpg';
+      moonEl.src = toPixel ? 'assets/deco/luna_pixel.png' : 'assets/deco/luna.webp';
       moonEl.classList.remove('moon-fading');
       setTimeout(res, REDUCED ? 0 : 440);
     }, REDUCED ? 0 : 440);
@@ -1250,7 +1361,7 @@ if(!REDUCED){
 /* ============================================================
    GATOS — PLACEHOLDER (SVG). Cambiar por PNG de Kami y Orión.
    ============================================================ */
-const CAT_IMG = (name, flip)=>`<img src="assets/deco/${name}.png" width="110" alt="" ${flip?'class="flip"':''}>`;
+const CAT_IMG = (name, flip)=>`<img src="assets/deco/${name}.webp" width="110" alt="" loading="lazy" decoding="async" ${flip?'class="flip"':''}>`;
 const catSpots = [
   {sec:'#sistemas', name:'orion', x:'87%', y:'4%', flip:true } // Orión vigilando
 ];
@@ -1290,6 +1401,7 @@ $$('.filtros button').forEach(b=>b.addEventListener('click', ()=>{
   $$('.g-item').forEach(it=>it.classList.toggle('hide', cat!=='todo' && it.dataset.cat!==cat));
   masonry();
   updateGal();
+  loadThumbs();
 }));
 
 /* masonry por filas: cada item calcula su alto con width/height del img */
@@ -1320,6 +1432,22 @@ $$('.g-item img').forEach(im=>{
 });
 masonry();
 
+/* carga diferida de miniaturas: el loading="lazy" nativo pedía casi todas de golpe,
+   así que solo se piden las que caben en la zona visible de la galería;
+   el resto, al abrir "ver más" o al cambiar de filtro */
+function loadThumbs(all){
+  const wrap = document.getElementById('gal-wrap');
+  const open = all || wrap.classList.contains('open');
+  const limit = wrap.getBoundingClientRect().bottom + 200;
+  $$('.g-item:not(.hide) img[data-src]').forEach(im=>{
+    if(open || im.getBoundingClientRect().top < limit){ im.src = im.dataset.src; im.removeAttribute('data-src'); }
+  });
+}
+const thumbObs = new IntersectionObserver(es=>{
+  if(es.some(e=>e.isIntersecting)){ loadThumbs(); thumbObs.disconnect(); }
+},{rootMargin:'400px 0px'});
+thumbObs.observe(document.getElementById('fotografia'));
+
 /* revelación suave de la galería */
 const gObs = new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){ e.target.classList.add('in'); gObs.unobserve(e.target); }
@@ -1348,6 +1476,7 @@ gmBtn.addEventListener('click', ()=>{
   const opening = !gw.classList.contains('open');
   gw.classList.toggle('open', opening);
   if(opening){
+    loadThumbs(true);
     gw.style.maxHeight = gw.scrollHeight + 'px';
     const end = e=>{
       if(e.propertyName !== 'max-height') return;
@@ -1479,7 +1608,7 @@ const CMD = {
   es:{
     help:'comandos: whoami · skills · cat gatos · sudo contratar · gg · lang en · clear\n(¿y más?)',
     whoami:'angel ..¿?',
-    skills:'python · power bi · excel avanzado · google workspace · github · ia aplicada\nfotografía: retratos · eventos · productos · urbano',
+    skills:'python · sql · power bi · excel avanzado · google workspace · github · ia aplicada\nfotografía: retratos · eventos · productos · urbano',
     'cat gatos': CATS_ART + '\nkami: supervisa todo desde el punto más alto.\norión: atención al cliente (te ve y corre).',
     'sudo contratar':'[sudo] contraseña: ********\npermiso concedido ✔ redirigiendo a contacto…',
     gg:'gg wp',
@@ -1494,7 +1623,7 @@ const CMD = {
   en:{
     help:'commands: whoami · skills · cat cats · sudo hire · gg · lang es · clear\n(and more?)',
     whoami:'angel ..¿?',
-    skills:'python · power bi · advanced excel · google workspace · github · applied ai\nphotography: portraits · events · products · urban',
+    skills:'python · sql · power bi · advanced excel · google workspace · github · applied ai\nphotography: portraits · events · products · urban',
     'cat cats': CATS_ART + '\nkami: supervises everything from the highest point.\norion: customer service — sees you, then runs.',
     'sudo hire':'[sudo] password: ********\npermission granted ✔ redirecting to contact…',
     gg:'gg wp',
